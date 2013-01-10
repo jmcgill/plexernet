@@ -1,0 +1,89 @@
+
+<html>
+<head>
+<script type="text/javascript"
+  src="http://maps.googleapis.com/maps/api/js?libraries=visualization&sensor=false"></script>
+<script type="text/javascript">
+var  clientId = '57681607714-aduf3qj266i45g3euj9b8arn22b6fuu3.apps.googleusercontent.com';
+var scopes = 'https://www.googleapis.com/auth/earthbuilder.readonly';
+ 
+function initialize() {
+  console.log('Library loaded');
+  handleClientLoad();
+}
+
+function handleClientLoad() {
+  console.log('Client loaded');
+  window.setTimeout(checkAuth,1);
+}
+
+function checkAuth() {
+  gapi.auth.authorize({client_id: clientId, scope: scopes, immediate: true}, handleAuthResult);
+}
+
+function handleAuthResult(authResult) {
+  console.log('Got auth result: ', authResult);
+  var authorizeButton = document.getElementById('authorize-button');
+  if (authResult && !authResult.error) {
+    authorizeButton.style.display = 'none';
+    showMap(authResult.access_token);
+  } else {
+    authorizeButton.style.display = '';
+    authorizeButton.onclick = handleAuthClick;
+  }
+}
+
+function handleAuthClick(event) {
+  var options = {
+    
+  }
+  gapi.auth.authorize({client_id: clientId, scope: scopes, immediate: false}, handleAuthResult);
+  return false;
+}
+
+function showMap(access_token, expires_in) {
+  var mapOptions = {
+    center: new google.maps.LatLng(42, -99),
+    zoom: 4,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
+
+  map = new google.maps.Map(
+      document.getElementById("map_canvas"),
+      mapOptions);
+
+  mapsEngineLayer = new google.maps.visualization.MapsEngineLayer({
+    layerId: '10258059232491603613-08645155700905327807',
+    oAuthToken: access_token
+  });
+  
+  mapsEngineLayer.setMap(map);
+  google.maps.event.addListener(mapsEngineLayer, 'bounds_changed', function() {
+    map.fitBounds(mapsEngineLayer.get('bounds'));
+  });
+
+  window.setTimeout(refreshToken, expires_in * 1000);
+}
+
+function refreshToken() {
+  var options = {
+    client_id: clientId,
+    scope: scopes,
+    immediate: true
+  };
+  gapi.auth.authorize(options, refreshLayer);
+}
+
+function refreshLayer(authResult) {
+  mapsEngineLayer.set('oAuthToken', authResult.access_token);
+  window.setTimeout(refreshToken, expires_in * 1000);
+}
+</script>
+<script src="https://apis.google.com/js/client.js"></script>
+</head>
+<body onload="initialize()">
+<input type="button" value="Authorize" id="authorize-button"></input> 
+<div id="map_canvas" style="height: 100%; width: 100%;">
+</div>
+</body>
+</html>
