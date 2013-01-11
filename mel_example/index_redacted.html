@@ -29,13 +29,13 @@
 //    oauth library.
 
 // The Client ID for your application, as configured on the Google APIs console.
-var clientId = '{{ PUT YOUR CLIENT ID HERE }}';
+var clientId = '{{ PLACE YOUR CLIENT ID HERE }}';
 
 // The oauth scope for displaying Maps Engine data.
 var scopes = 'https://www.googleapis.com/auth/earthbuilder.readonly';
 
 // The Asset ID of the Maps Engine Layer to display.
-var layerId = '{{ PUT YOUR MAPS ENGINE LAYER ID HERE }}';
+var layerId = '{{ PLACE YOUR LAYER ID HERE }}';
 
 // This function is run when the page (including the Maps API and Google APIs
 // client libraries) have finished loading.
@@ -85,7 +85,7 @@ function handleAuthResult(authResult) {
   } else {
     // The application has not been authorized. Start the authorization flow
     // when the user clicks the button.
-    authorizeButton.style.display = '';
+    authorizeButton.style.display = 'block';
     authorizeButton.onclick = handleAuthClick;
   }
 }
@@ -152,7 +152,7 @@ function refreshLayer(authResult) {
 </script>
 </head>
 <body onload="initialize()">
-<input type="button" value="Authorize" id="authorize_button"></input>
+<input type="button" value="Authorize" id="authorize_button" style="display: none;"></input>
 <div id="map_canvas" style="height: 100%; width: 100%;">
 </div>
 </body>
