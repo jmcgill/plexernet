@@ -39,10 +39,11 @@ var layerId = '10258059232491603613-08645155700905327807';
 // This function is run when the page (including the Maps API and Google APIs
 // client libraries) have finished loading.
 function initialize() {
-  window.setTimeout(
-    function() {
-      checkAuth(false, handleAuthResult);
-    }, 1);
+  checkAuth(false, handleAuthResult);
+  //window.setTimeout(
+  //  function() {
+  //    checkAuth(false, handleAuthResult);
+  //  }, 1);
 }
 
 // A shared function which checks if the user has previously authorized this
