@@ -1,0 +1,27 @@
+<html>
+  <head>
+  	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  	<script type="text/javascript" src="simple_oauth.js"></script>
+  	<script type="text/javascript">
+    function main() {
+      var client = new OAuthClientSample(
+      	'347755151850-oam0f150scsadc6jc6af1jk2h31agbj7.apps.googleusercontent.com',
+      	'http://plexer.net/work/oauth_demo',
+      	['https://www.googleapis.com/auth/earthbuilder.readonly']);
+      
+      // Has this page been loaded with valid credentials?
+      var token = client.getAccessToken();
+      if (!token) {
+      	client.requestAccessToken();
+      	return;
+      }
+
+      // With a valid access token, we can make a request to the
+      // Maps Engine API on behalf of the user.
+      console.log('Valid: ', token);
+    }
+  	</script>
+  </head>
+  <body onload = "main()">
+  </body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <title>MapsEngine Store Locator Demo</title>
+    <style type="text/css">
+      html { height: 100% }
+      body { height: 100%; margin: 0; padding: 0 }
+      #header {
+        height: 30px;
+      }
+
+      #map-canvas {
+        position: absolute !important;
+        top: 30px;
+        left: 0;
+        width: 80%;
+        bottom: 0;
+      }
+
+      #sidebar {
+        position: absolute;
+        top: 30px;
+        right: 0;
+        width: 18%;
+        bottom: 0;
+        overflow: auto;
+      }
+    </style>
+
+    <!-- Load the Google Maps API. -->
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"> </script>
+
+    <!-- Load the radius search example. -->
+    <script type="text/javascript" src="radius_search.js"></script>
+    <script type="text/javascript" src="simple_oauth.js"></script>
+
+    <!-- Load jQuery for cross-browser support. -->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  </head>
+
+  <body>
+    <div id="header">
+      <input id="searchTextField" type="text" size="100" placeholder="Enter address"/>
+    </div>
+    <div id="map-canvas"></div>
+    <div id="sidebar">
+      <h2>Details</h2>
+      <ul id="details"></ul>
+     </div>
+  </body>
+</html>

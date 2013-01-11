@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <title>MapsEngine Mutation Demo></title>
+    <style type="text/css">
+      html { height: 100% }
+      body { height: 100%; margin: 25; padding: 0 }
+     html, body, #map_canvas {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+      }
+      #inner {
+        width: 320px;
+      }
+
+      #status_div {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        height: 90%;
+        width: 340px;
+        -webkit-box-shadow: 3px 3px 3px #888;
+        -webkit-border-radius: 3px;
+        background: white;
+        font-family: helvetica, sans-serif;
+        margin: 5px;
+        overflow: auto;
+        color: #808080;
+        font-size: 14px;
+        padding: 5px;
+      }
+
+      #header {
+        height: 30px;
+      }
+    </style>
+
+    <!-- Load the playground implementation -->
+    <script type="text/javascript" src="playground.js"></script>
+    <script type="text/javascript" src="simple_oauth.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.10&sensor=false&libraries=drawing"></script>
+
+    <!-- Load jQuery for cross-browser support. -->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  </head>
+
+  <body onload="initialize()">
+    <div id="map_canvas"></div>
+    <div id="status_div">
+    The <b>inspector</b> shows the HTTP requests being sent to the Maps Engine API.<br><br>
+    Add, move or edit the properties of a marker to see a request.
+    <hr> 
+    <div id="inner"></div>
+    <pre id="request"></pre>
+    <hr id="bar" style="display: none;">
+    <center><img id="loading" style="display: none" src="http://plexer.net/work/map_playground/loading.gif"/></center>
+    <pre id="response"></pre>
+    </div>
+  </body>
+</html>

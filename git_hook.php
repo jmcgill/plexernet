@@ -16,18 +16,17 @@ function syscall ($cmd, $cwd) {
 }
  
 // GitHub will hit us with POST (http://help.github.com/post-receive-hooks/)
-if (!empty($_POST['payload'])) {
-	
+//if (!empty($_POST['payload'])) {
+        echo "Running";	
 	// pull from master
-	$result = syscall('git pull', '/var/www/example.com');
- 
-	// send us the output
-	mail('team@example.com', 'GitHub hook `git pull` result', $result);
+	$result = syscall('git pull');
+        echo "Pull done";
+        echo $result
  
 	// clear APC
-	if (apc_clear_cache('opcode') == false) {
-		mail('root', 'Unable to apc_clear_cache()', '');
-	}
-	
-}
+	//if (apc_clear_cache('opcode') == false) {
+//		mail('root', 'Unable to apc_clear_cache()', '');
+//	}
+//}
 ?>
+Hello

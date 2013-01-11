@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <title>MapsEngine Store Locator Demo</title>
+    <style type="text/css">
+      html { height: 100% }
+      body { height: 100%; margin: 25; padding: 0 }
+      #header {
+        height: 30px;
+      }
+
+      #map-canvas {
+        position: absolute !important;
+        top: 30px;
+        left: 0;
+        width: 80%;
+        bottom: 0;
+      }
+
+      #sidebar {
+        position: absolute;
+        top: 30px;
+        right: 0;
+        width: 18%;
+        bottom: 0;
+        overflow: auto;
+      }
+    </style>
+
+    <!-- Load the playground implementation -->
+    <script type="text/javascript" src="playground.js"></script>
+    <script type="text/javascript" src="simple_oauth.js"></script>
+    <script src="https://apis.google.com/js/client.js?onload=initialize"></script>
+
+    <!-- Load jQuery for cross-browser support. -->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  </head>
+  <input type="button" id="auth-button" value="Authorize"></input>
+  <body> 
+  Enter an API query to execute e.g. tables?projectId=...<br>
+  <form onsubmit="runQuery()">
+    <input type="text" style="width: 800px; margin-top: 10px;" id="query"></input>
+    <input type="submit" value="Query"></input><br>
+    User to e-mail trace to: <input type="text" id="email" style="margin-top: 10px;"></input>
+    <div id="highlighted_query" style="font-family: monospace; margin-top: 10px;"></div>
+    <hr>
+    <pre id="output"></pre>
+  </body>
+</html>
