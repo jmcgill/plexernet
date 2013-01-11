@@ -40,7 +40,10 @@ var layerId = '10258059232491603613-08645155700905327807';
 // client libraries) have finished loading.
 function initialize() {
   console.log("Initialize");
-  checkAuth(false, handleAuthResult);
+  window.setTimeout(
+    function() {
+      checkAuth(false, handleAuthResult);
+    }, 1);
 }
 
 // A shared function which checks if the user has previously authorized this
