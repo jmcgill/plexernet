@@ -70,7 +70,8 @@ OAuthWrapper.prototype.handleAuthResult = function(authResult) {
     console.log('Calling callback');
     this.onComplete(authResult);
   } else {
-  	console.log('Missing auth');
+  	console.log('An error occured');
+  	/*
     // The application has not been authorized. Start the authorization flow
     // when the user clicks the button.
     var me = this;
@@ -79,6 +80,7 @@ OAuthWrapper.prototype.handleAuthResult = function(authResult) {
       me.checkAuth(true, bind(me, me.handleAuthResult));
       return false;
     }
+    */
   }
 }
 
