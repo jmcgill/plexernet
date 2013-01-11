@@ -2,9 +2,6 @@
 <html>
 <head>
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=visualization&sensor=false"></script>
-<!--
-<script type="text/javascript" src="https://apis.google.com/js/client.js"></script>
--->
 <script type="text/javascript">
 // An example of how to use oauth to obtain authorization for a web application
 // to display Maps Engine layers readable by a user of that application.
@@ -39,21 +36,9 @@ var scopes = 'https://www.googleapis.com/auth/earthbuilder.readonly';
 // The Asset ID of the Maps Engine Layer to display.
 var layerId = '10258059232491603613-08645155700905327807';
 
-var librariesRequested = 2;
-
-function initialize() {
-  console.log('Loaded');
-  librariesRequested -= 1;
-  if (librariesRequested == 0) {
-    console.log('All libraries loaded');
-    //initialize2();
-  }
-
-}
-
 // This function is run when the page (including the Maps API and Google APIs
 // client libraries) have finished loading.
-function initialize2() {
+function initialize() {
   checkAuth(false, handleAuthResult);
 }
 
@@ -69,7 +54,6 @@ function initialize2() {
 // If prompt_user is set to false, and the user is not authorized, the callback
 // will be called with null.
 function checkAuth(prompt_user, callback) {
-  console.log("Checking authorization", clientId, scopes, callback);
   var options = {
     client_id: clientId,
     scope: scopes,
@@ -90,7 +74,6 @@ function checkAuth(prompt_user, callback) {
 // Authorization can only be started in response to a user action (such as
 // clicking a button) in order to avoid triggering popup blockers.
 function handleAuthResult(authResult) {
-  console.log("Authorization callback");
   var authorizeButton = document.getElementById('authorize_button');
 
   // Has the user authorized this application?
@@ -168,7 +151,7 @@ function refreshLayer(authResult) {
 </script>
 <script type="text/javascript" src="https://apis.google.com/js/auth.js?onload=initialize"></script>
 </head>
-<body onload="initialize()">
+<body>
 <input type="button" value="Authorize" id="authorize_button" style="display: none;"></input>
 <div id="map_canvas" style="height: 100%; width: 100%;">
 </div>
