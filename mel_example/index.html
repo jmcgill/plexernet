@@ -14,21 +14,28 @@ var scopes = 'https://www.googleapis.com/auth/earthbuilder.readonly';
 // client libraries) have finished loading.
 function initialize() {
   checkAuth(handleAuthResult);
-  // window.setTimeout(checkAuth, 1);
+  //window.setTimeout(checkAuth, 1);
 }
 
 // A shared function which checks if the user has previously authorized this
 // application, and if so calls the supplied callback.
 // This function should always be called before calling a function which
 // requires an oauth access_token.
-function checkAuth(callback) {
+//
+// If prompt_user is true, the user will be prompted to provide access. This
+// should not be set to true unless this function was triggered by a user
+// action (e.g. clicking a button).
+//
+// If prompt_user is set to false, and the user is not authorized, the callback
+// will be called with null.
+function checkAuth(prompt_user, callback) {
   var options = {
     client_id: clientId,
     scope: scopes,
 
     // Setting immediate to 'true' will avoid prompting the user for
     // authorization if they have already granted it in the past.
-    immediate: true
+    immediate: !prompt_user
   }
 
   // Check to see if the current user has authorized this application.
