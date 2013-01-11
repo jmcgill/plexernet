@@ -39,6 +39,7 @@ var layerId = '10258059232491603613-08645155700905327807';
 // This function is run when the page (including the Maps API and Google APIs
 // client libraries) have finished loading.
 function initialize() {
+  console.log('Initialize called');
   checkAuth(false, handleAuthResult);
 }
 
