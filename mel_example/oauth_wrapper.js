@@ -34,6 +34,8 @@ OAuthWrapper.prototype.authorize = function(onComplete, onRefresh) {
 // If prompt_user is set to false, and the user is not authorized, the callback
 // will be called with null.
 OAuthWrapper.prototype.checkAuth = function(prompt_user, callback) {
+  console.log('Starting an oauth flow: ', client_id, scope, prompt_user);
+
   var options = {
     client_id: this.clientId,
     scope: this.scopes,
@@ -54,7 +56,7 @@ OAuthWrapper.prototype.checkAuth = function(prompt_user, callback) {
 // Authorization can only be started in response to a user action (such as
 // clicking a button) in order to avoid triggering popup blockers.
 OAuthWrapper.prototype.handleAuthResult = function(authResult) {
-  console.log('Handle auth result');
+  console.log('Handle auth result', authResult);
 
   // Has the user authorized this application?
   if (authResult && !authResult.error) {
