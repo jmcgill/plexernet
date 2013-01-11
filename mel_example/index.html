@@ -13,7 +13,7 @@ var scopes = 'https://www.googleapis.com/auth/earthbuilder.readonly';
 // This function is run when the page (including the Maps API and Google APIs
 // client libraries) have finished loading.
 function initialize() {
-  checkAuth(handleAuthResult);
+  checkAuth(false, handleAuthResult);
   //window.setTimeout(checkAuth, 1);
 }
 
@@ -67,7 +67,7 @@ function handleAuthResult(authResult) {
 // This function is called when the user clicks the Authorization button. It
 // starts the authorization flow.
 function handleAuthClick(event) {
-  checkAuth(handleAuthResult);
+  checkAuth(true, handleAuthResult);
   return false;
 }
 
@@ -110,7 +110,7 @@ function showMap(access_token, expires_in) {
 // be prompted to do anything, because we set the 'immediate' property on the
 // gapi.auth.authorize request to true.
 function refreshToken() {
-  checkAuth(refreshLayer);
+  checkAuth(false, refreshLayer);
 }
 
 // This function is called once an expired access_token has been refreshed, and
