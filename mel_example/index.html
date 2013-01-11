@@ -42,6 +42,7 @@ var layerId = '10258059232491603613-08645155700905327807';
 var librariesRequested = 2;
 
 function initialize() {
+  console.log('Loaded');
   librariesRequested -= 1;
   if (librariesRequested == 0) {
     initialize2();
@@ -67,7 +68,7 @@ function initialize2() {
 // If prompt_user is set to false, and the user is not authorized, the callback
 // will be called with null.
 function checkAuth(prompt_user, callback) {
-  console.log("Checking authorization");
+  console.log("Checking authorization", clientId, scopes, callback);
   var options = {
     client_id: clientId,
     scope: scopes,
