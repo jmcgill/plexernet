@@ -5,7 +5,6 @@
 <!--
 <script type="text/javascript" src="https://apis.google.com/js/client.js"></script>
 -->
-<script type="text/javascript" src="https://apis.google.com/js/auth.js?onload=init"></script>
 <script type="text/javascript">
 // An example of how to use oauth to obtain authorization for a web application
 // to display Maps Engine layers readable by a user of that application.
@@ -172,6 +171,7 @@ function refreshLayer(authResult) {
   window.setTimeout(refreshToken, expires_in * 1000);
 }
 </script>
+<script type="text/javascript" src="https://apis.google.com/js/auth.js?onload=init"></script>
 </head>
 <body onload="initialize()">
 <input type="button" value="Authorize" id="authorize_button" style="display: none;"></input>
