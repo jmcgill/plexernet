@@ -5,7 +5,7 @@
 <!--
 <script type="text/javascript" src="https://apis.google.com/js/client.js"></script>
 -->
-<script type="text/javascript" src="https://apis.google.com/js/auth.js"></script>
+<script type="text/javascript" src="https://apis.google.com/js/auth.js?onload=foo"></script>
 <script type="text/javascript">
 // An example of how to use oauth to obtain authorization for a web application
 // to display Maps Engine layers readable by a user of that application.
@@ -40,9 +40,22 @@ var scopes = 'https://www.googleapis.com/auth/earthbuilder.readonly';
 // The Asset ID of the Maps Engine Layer to display.
 var layerId = '10258059232491603613-08645155700905327807';
 
+var count = 0;
+
+function initialize() {
+  count += 1;
+  if (count == 2) initialize2();
+}
+
+function foo() {
+  count += 1;
+  if (count == 2) initialize2();
+}
+
 // This function is run when the page (including the Maps API and Google APIs
 // client libraries) have finished loading.
-function initialize() {
+function initialize2() {
+  console.log("2nd initialize");
   checkAuth(false, handleAuthResult);
 }
 
@@ -58,6 +71,7 @@ function initialize() {
 // If prompt_user is set to false, and the user is not authorized, the callback
 // will be called with null.
 function checkAuth(prompt_user, callback) {
+  console.log("Checking authorization");
   var options = {
     client_id: clientId,
     scope: scopes,
@@ -78,6 +92,7 @@ function checkAuth(prompt_user, callback) {
 // Authorization can only be started in response to a user action (such as
 // clicking a button) in order to avoid triggering popup blockers.
 function handleAuthResult(authResult) {
+  console.log("Authorization callback");
   var authorizeButton = document.getElementById('authorize_button');
 
   // Has the user authorized this application?
