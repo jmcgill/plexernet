@@ -14,10 +14,10 @@ var scopes = 'https://www.googleapis.com/auth/earthbuilder.readonly';
 // The Asset ID of the Maps Engine Layer to display.
 var layerId = '10258059232491603613-08645155700905327807';
 
-function initialize(clientId, scopes, authComplete) {
+function initialize() {
   var wrapper = new OAuthWrapper(
-      '57681607714-aduf3qj266i45g3euj9b8arn22b6fuu3.apps.googleusercontent.com',
-      'https://www.googleapis.com/auth/earthbuilder.readonly',
+      clientId,
+      scopes,
       document.getElementById('authorize_button'));
 
   // Start the OAuth authentication flow.
