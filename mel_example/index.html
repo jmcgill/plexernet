@@ -5,7 +5,7 @@
 <!--
 <script type="text/javascript" src="https://apis.google.com/js/client.js"></script>
 -->
-<script type="text/javascript" src="https://apis.google.com/js/auth.js?onload=foo"></script>
+<script type="text/javascript" src="https://apis.google.com/js/auth.js?onload=init"></script>
 <script type="text/javascript">
 // An example of how to use oauth to obtain authorization for a web application
 // to display Maps Engine layers readable by a user of that application.
@@ -49,7 +49,7 @@ function initialize() {
   if (count == 2) initialize2();
 }
 
-function foo() {
+function init() {
   console.log("foo 1");
   count += 1;
   console.log("Count: ", count);
