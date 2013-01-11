@@ -7,11 +7,13 @@ function bind(scope, fn) {
   }
 };
 
-function OAuthWrapper(clientId, scope, uiElement) {
+function OAuthWrapper(clientId, scopes, uiElement) {
+  console.log('CID: ', clientId);
   this.clientId = clientId;
-  this.scope = scope;
+  this.scopes = scopes;
   this.uiElement = uiElement;
   console.log('UI element: ', this.uiElement);
+  console.log('Other: ', this.clientId, this.scope);
 }
 
 OAuthWrapper.prototype.authorize = function(onComplete, onRefresh) {
@@ -34,7 +36,8 @@ OAuthWrapper.prototype.authorize = function(onComplete, onRefresh) {
 // If prompt_user is set to false, and the user is not authorized, the callback
 // will be called with null.
 OAuthWrapper.prototype.checkAuth = function(prompt_user, callback) {
-  console.log('Starting an oauth flow: ', client_id, scope, prompt_user);
+  console.log('This is: ', this);
+  console.log('Starting an oauth flow: ', this.clientId, this.scopes, prompt_user);
 
   var options = {
     client_id: this.clientId,
