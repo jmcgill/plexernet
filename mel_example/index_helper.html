@@ -46,7 +46,7 @@ function showMap(authResult) {
   // flow is used here to access user data.
   mapsEngineLayer = new google.maps.visualization.MapsEngineLayer({
     layerId: layerId,
-    oAuthToken: access_token
+    oAuthToken: authResult.access_token
   });
   mapsEngineLayer.setMap(map);
 
