@@ -1,0 +1,72 @@
+
+<html>
+<head>
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=visualization&sensor=false"></script>
+<script src="https://apis.google.com/js/client.js"></script>
+<script type="text/javascript" src="oauth_wrapper.js"></script>
+<script type="text/javascript">
+// The Client ID for your application, as configured on the Google APIs console.
+var clientId = '57681607714-aduf3qj266i45g3euj9b8arn22b6fuu3.apps.googleusercontent.com';
+
+// The oauth scope for displaying Maps Engine data.
+var scopes = 'https://www.googleapis.com/auth/earthbuilder.readonly';
+
+// The Asset ID of the Maps Engine Layer to display.
+var layerId = '10258059232491603613-08645155700905327807';
+
+function initialize(clientId, scopes, authComplete) {
+  var wrapper = new OAuthWrapper(
+      clientId,
+      scopes,
+      document.getElementById('authorize_button'));
+
+  // Start the OAuth authentication flow.
+  wrapper.authorize(showMap, refreshLayer);
+}
+
+// This function is called when an access_token is first available.
+function showMap(authResult) {
+  console.log('Callback called');
+
+  // The token is valid, no need to show the button anymore.
+  var button = document.getElementById('authorize_button');
+  button.style.display = 'none';
+
+  // Create a new Google Maps API Map
+  var mapOptions = {
+    center: new google.maps.LatLng(0,0),
+    zoom: 4,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
+  map = new google.maps.Map(
+      document.getElementById("map_canvas"),
+      mapOptions);
+
+  // Add a Maps Engine Layer to this Map. The access_token granted by the oauth
+  // flow is used here to access user data.
+  mapsEngineLayer = new google.maps.visualization.MapsEngineLayer({
+    layerId: layerId,
+    oAuthToken: access_token
+  });
+  mapsEngineLayer.setMap(map);
+
+  // Add an event listener which modifies the bounds of the Map to best fit
+  // the Layer once the layer has loaded.
+  google.maps.event.addListener(mapsEngineLayer, 'bounds_changed', function() {
+    map.fitBounds(mapsEngineLayer.get('bounds'));
+  });
+}
+
+// This function is called when a new access_token is available.
+function refreshLayer(authResult) {
+  // Update the token provided to the MapsEngineLayer.
+  mapsEngineLayer.set('oAuthToken', authResult.access_token);
+}
+</script>
+</head>
+<body onload="initialize()">
+<input type="button" value="Authorize" id="authorize_button"></input>
+<div id="map_canvas" style="height: 100%; width: 100%;">
+</div>
+</body>
+</html>
