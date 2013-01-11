@@ -39,7 +39,6 @@ var layerId = '10258059232491603613-08645155700905327807';
 // This function is run when the page (including the Maps API and Google APIs
 // client libraries) have finished loading.
 function initialize() {
-  console.log('Initialize called');
   checkAuth(false, handleAuthResult);
 }
 
@@ -81,7 +80,7 @@ function handleAuthResult(authResult) {
   if (authResult && !authResult.error) {
     // The application is authorized. Hide the 'Authorization' button.
     authorizeButton.style.display = 'none';
-    // showMap(authResult.access_token);
+    showMap(authResult.access_token);
   } else {
     // The application has not been authorized. Start the authorization flow
     // when the user clicks the button.
