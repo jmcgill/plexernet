@@ -21,7 +21,7 @@ OAuthWrapper.prototype.authorize = function(onComplete, onRefresh) {
   this.onComplete = onComplete;
   this.onRefresh = onRefresh;
 
-  this.checkAuth(true, bind(this, this.handleAuthResult));
+  this.checkAuth(false, bind(this, this.handleAuthResult));
 }
 
 // A shared function which checks if the user has previously authorized this
@@ -70,8 +70,7 @@ OAuthWrapper.prototype.handleAuthResult = function(authResult) {
     console.log('Calling callback');
     this.onComplete(authResult);
   } else {
-  	console.log('An error occured');
-  	/*
+  	console.log('Missing auth');
     // The application has not been authorized. Start the authorization flow
     // when the user clicks the button.
     var me = this;
@@ -80,7 +79,6 @@ OAuthWrapper.prototype.handleAuthResult = function(authResult) {
       me.checkAuth(true, bind(me, me.handleAuthResult));
       return false;
     }
-    */
   }
 }
 
