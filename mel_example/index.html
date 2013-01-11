@@ -39,26 +39,17 @@ var scopes = 'https://www.googleapis.com/auth/earthbuilder.readonly';
 // The Asset ID of the Maps Engine Layer to display.
 var layerId = '10258059232491603613-08645155700905327807';
 
-var count = 0;
+var librariesRequested = 2;
 
 function initialize() {
-  console.log("initialize 1");
-  count += 1;
-  console.log("Count: ", count);
-  if (count == 2) initialize2();
-}
-
-function init() {
-  console.log("foo 1");
-  count += 1;
-  console.log("Count: ", count);
-  if (count == 2) initialize2();
+  if (librariesRequested == 0) {
+    initialize2();
+  }
 }
 
 // This function is run when the page (including the Maps API and Google APIs
 // client libraries) have finished loading.
 function initialize2() {
-  console.log("2nd initialize");
   checkAuth(false, handleAuthResult);
 }
 
@@ -171,7 +162,7 @@ function refreshLayer(authResult) {
   window.setTimeout(refreshToken, expires_in * 1000);
 }
 </script>
-<script type="text/javascript" src="https://apis.google.com/js/auth.js?onload=init"></script>
+<script type="text/javascript" src="https://apis.google.com/js/auth.js?onload=initialize"></script>
 </head>
 <body onload="initialize()">
 <input type="button" value="Authorize" id="authorize_button" style="display: none;"></input>
