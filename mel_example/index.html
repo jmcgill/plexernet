@@ -85,7 +85,7 @@ function handleAuthResult(authResult) {
   } else {
     // The application has not been authorized. Start the authorization flow
     // when the user clicks the button.
-    authorizeButton.style.display = '';
+    authorizeButton.style.display = 'block';
     authorizeButton.onclick = handleAuthClick;
   }
 }
@@ -152,7 +152,7 @@ function refreshLayer(authResult) {
 </script>
 </head>
 <body onload="initialize()">
-<input type="button" value="Authorize" id="authorize_button"></input>
+<input type="button" value="Authorize" id="authorize_button" style="display: none;"></input>
 <div id="map_canvas" style="height: 100%; width: 100%;">
 </div>
 </body>
