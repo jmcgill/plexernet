@@ -42,7 +42,7 @@ var layerId = '10258059232491603613-08645155700905327807';
 var librariesRequested = 2;
 
 function initialize() {
-  if (librariesRequested == 0) {
+  if (librariesRequested-- == 0) {
     initialize2();
   }
 }
