@@ -2,7 +2,7 @@
 <html>
 <head>
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=visualization&sensor=false"></script>
-<script type="text/javascript" src="https://apis.google.com/js/auth.js"></script>
+<script type="text/javascript" src="https://apis.google.com/js/client.js"></script>
 <script type="text/javascript">
 // An example of how to use oauth to obtain authorization for a web application
 // to display Maps Engine layers readable by a user of that application.
@@ -55,7 +55,6 @@ function initialize() {
 // If prompt_user is set to false, and the user is not authorized, the callback
 // will be called with null.
 function checkAuth(prompt_user, callback) {
-  console.log('Checking auth: ', clientId, scopes, prompt_user, callback);
   var options = {
     client_id: clientId,
     scope: scopes,
@@ -76,7 +75,6 @@ function checkAuth(prompt_user, callback) {
 // Authorization can only be started in response to a user action (such as
 // clicking a button) in order to avoid triggering popup blockers.
 function handleAuthResult(authResult) {
-  console.log('Got auth result: ', authResult);
   var authorizeButton = document.getElementById('authorize_button');
 
   // Has the user authorized this application?
