@@ -21,7 +21,7 @@ OAuthWrapper.prototype.authorize = function(onComplete, onRefresh) {
   this.onComplete = onComplete;
   this.onRefresh = onRefresh;
 
-  this.checkAuth(false, bind(this, this.handleAuthResult));
+  this.checkAuth(true, bind(this, this.handleAuthResult));
 }
 
 // A shared function which checks if the user has previously authorized this
