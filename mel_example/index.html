@@ -42,9 +42,11 @@ var layerId = '10258059232491603613-08645155700905327807';
 var librariesRequested = 2;
 
 function initialize() {
-  if (librariesRequested-- == 0) {
+  librariesRequested -= 1;
+  if (librariesRequested == 0) {
     initialize2();
   }
+
 }
 
 // This function is run when the page (including the Maps API and Google APIs
