@@ -39,6 +39,7 @@ var layerId = '10258059232491603613-08645155700905327807';
 // This function is run when the page (including the Maps API and Google APIs
 // client libraries) have finished loading.
 function initialize() {
+  console.log("Initialize");
   checkAuth(false, handleAuthResult);
 }
 
@@ -54,6 +55,7 @@ function initialize() {
 // If prompt_user is set to false, and the user is not authorized, the callback
 // will be called with null.
 function checkAuth(prompt_user, callback) {
+  console.log("Check Auth");
   var options = {
     client_id: clientId,
     scope: scopes,
@@ -74,6 +76,7 @@ function checkAuth(prompt_user, callback) {
 // Authorization can only be started in response to a user action (such as
 // clicking a button) in order to avoid triggering popup blockers.
 function handleAuthResult(authResult) {
+  console.log("Callback", authResult);
   var authorizeButton = document.getElementById('authorize_button');
 
   // Has the user authorized this application?
