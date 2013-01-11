@@ -39,7 +39,6 @@ var layerId = '10258059232491603613-08645155700905327807';
 // This function is run when the page (including the Maps API and Google APIs
 // client libraries) have finished loading.
 function initialize() {
-  console.log("Initialize");
   window.setTimeout(
     function() {
       checkAuth(false, handleAuthResult);
@@ -58,7 +57,6 @@ function initialize() {
 // If prompt_user is set to false, and the user is not authorized, the callback
 // will be called with null.
 function checkAuth(prompt_user, callback) {
-  console.log("Check Auth", clientId, scopes, prompt_user);
   var options = {
     client_id: clientId,
     scope: scopes,
