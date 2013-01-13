@@ -1,0 +1,44 @@
+
+<html>
+<head>
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=visualization&sensor=false"></script>
+<script type="text/javascript">
+// Test whether deleted public MapsEngineLayers can still be accessed via the
+// API.
+//
+// This code displays a public Maps Engine Layer, which will be deleted.
+function initialize() {
+  showMap();
+}
+
+function showMap() {
+  // Create a new Google Maps API Map
+  var mapOptions = {
+    center: new google.maps.LatLng(0,0),
+    zoom: 4,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
+  map = new google.maps.Map(
+      document.getElementById("map_canvas"),
+      mapOptions);
+
+  // Add a Maps Engine Layer to this Map. The access_token granted by the oauth
+  // flow is used here to access user data.
+  mapsEngineLayer = new google.maps.visualization.MapsEngineLayer({
+    layerId: '10258059232491603613-04031658972795639877',
+  });
+  mapsEngineLayer.setMap(map);
+
+  // Add an event listener which modifies the bounds of the Map to best fit
+  // the Layer once the layer has loaded.
+  google.maps.event.addListener(mapsEngineLayer, 'bounds_changed', function() {
+    map.fitBounds(mapsEngineLayer.get('bounds'));
+  });
+}
+</script>
+</head>
+<body onload="initialize();">
+<div id="map_canvas" style="height: 100%; width: 100%;">
+</div>
+</body>
+</html>
