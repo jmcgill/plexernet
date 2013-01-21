@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+ <Document>
+   <name>Be sensible.</name>
+   <Style id="red">
+     <IconStyle>
+       <Icon>
+         <href>http://maps.google.com/mapfiles/kml/pushpin/red-pushpin.png</href>
+       </Icon>
+    </IconStyle>
+   </Style>
+   <Placemark>
+       <styleUrl>#red</styleUrl>
+       <description>Hello this is a really long piece of text which should technically wrap accross multiple lines which must be really annoying when you have a small map and you're all like why is this text wrapping argh I am so angry at the wrapping text!</description>
+       <Point>
+           <coordinates>0,0,0</coordinates>
+       </Point>
+   </Placemark>
+ </Document>
+</kml>
