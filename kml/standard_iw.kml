@@ -10,7 +10,7 @@
 		<BalloonStyle>
 			<text>
 				<![CDATA[
-				Link here: $[image_url]
+				<html><body>Link here: $[image_url]</body></html>
 				]]>
 			</text>
 		</BalloonStyle>
