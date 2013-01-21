@@ -21,7 +21,7 @@
 	</Style>
 	<Placemark>
 		<name>Untitled Placemark</name>
-                <styleUrl>#james</styleUrl>
+                <styleUrl>##james</styleUrl>
 		<ExtendedData>
 			<Data name="image_url">
 				<value><![CDATA[http://www.google.com/earth/outreach/images/stories_halo1.jpg]]></value>
