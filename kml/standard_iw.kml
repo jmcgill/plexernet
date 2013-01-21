@@ -1,0 +1,37 @@
+<Document>
+<!-- http://b/7902585 -->
+	<name>Testing URLs in ExtendedData</name>
+	<Style id="shared_style">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+		</IconStyle>
+		<BalloonStyle>
+			<text>
+				<![CDATA[
+				Link here: $[image_url]
+				]]>
+			</text>
+		</BalloonStyle>
+	</Style>
+	<Placemark>
+		<name>Untitled Placemark</name>
+		<styleUrl>#shared_style</styleUrl>
+		<ExtendedData>
+			<Data name="image_url">
+				<value><![CDATA[http://www.google.com/earth/outreach/images/stories_halo1.jpg]]></value>
+			</Data>
+			<Data name="link_url">
+				<value><![CDATA[http://www.google.com]]></value>
+			</Data>
+			<Data name="pre_linked_url">
+				<value><![CDATA[<a href="http://www.google.com">Some Link Yay</a>]]></value>
+			</Data>
+		</ExtendedData>
+		<Point>
+			<coordinates>-93.70944368012236,40.040605367657,0</coordinates>
+		</Point>
+	</Placemark>
+</Document>
+
