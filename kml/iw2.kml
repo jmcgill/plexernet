@@ -2,7 +2,7 @@
 <kml xmlns="http://www.opengis.net/kml/2.2">
 <Document>
 	<name>Testing URLs in ExtendedData</name>
-	<Style id="shared_style">
+	<Style id="james">
 		<IconStyle>
 			<Icon>
 				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
@@ -21,7 +21,7 @@
 	</Style>
 	<Placemark>
 		<name>Untitled Placemark</name>
-                <styleUrl>http://plexer.net/work/git/kml/iw2.kml#shared_style</styleUrl>
+                <styleUrl>#james</styleUrl>
 		<ExtendedData>
 			<Data name="image_url">
 				<value><![CDATA[http://www.google.com/earth/outreach/images/stories_halo1.jpg]]></value>
