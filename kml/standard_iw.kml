@@ -9,9 +9,7 @@
 		</IconStyle>
 		<BalloonStyle>
 			<text>
-				<![CDATA[
-				<html><body>Link here: $[image_url]</body></html>
-				]]>
+				<![CDATA[Link here: $[image_url]</body></html>]]>
 			</text>
 		</BalloonStyle>
 	</Style>
