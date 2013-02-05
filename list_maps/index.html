@@ -137,8 +137,15 @@ function gotProjects(response) {
 function gotMaps(response) {
   console.log('Maps response: ', response);
   for (var i = 0; i < response.maps.length; ++i) {
+    var map = response.maps[i];
+    var text = [
+      '<b>Name</b>: ', map.name,
+      '<b>Description</b>: ', map.description,
+      '<b>Id</b>: ', map.id,
+      '<hr>'
+    ]
     $("#output").html(
-      $("#output").html() + response.maps[i].id + '<br>');
+      $("#output").html() + text.join('<br>');
   }
 }
 </script>
