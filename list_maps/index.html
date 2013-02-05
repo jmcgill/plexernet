@@ -139,9 +139,9 @@ function gotMaps(response) {
   for (var i = 0; i < response.maps.length; ++i) {
     var map = response.maps[i];
     var text = [
-      '<b>Name</b>: ', map.name,
-      '<b>Description</b>: ', map.description,
-      '<b>Id</b>: ', map.id,
+      '<b>Name</b>: ' + map.name,
+      '<b>Description</b>: ' + map.description,
+      '<b>Id</b>: ' + map.id,
       '<hr>'
     ]
     $("#output").html(
