@@ -116,6 +116,7 @@ function requestUrl(url, data, access_token, callback) {
 // This function is called once handleAuthResult detects that authorization
 // has been provided.
 function listMaps(at, expires_in) {
+  // HACK(jmcgill): Move access_token into global scope.
   access_token = at;
   var url = "projects";
   requestUrl(url, {}, access_token, gotProjects);
@@ -134,7 +135,7 @@ function gotProjects(response) {
 }
 
 function gotMaps(response) {
-  console.log('Maps response: ', maps);
+  console.log('Maps response: ', response);
   for (var i = 0; i < response.maps.length; ++i) {
     $("#output").html(
       $("#output").html() + response.maps[i].id + '<br>');
