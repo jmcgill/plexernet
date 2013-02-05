@@ -118,20 +118,12 @@ function requestUrl(url, data, access_token, callback) {
 function listMaps(at, expires_in) {
   // HACK(jmcgill): Move access_token into global scope.
   access_token = at;
-  var url = "projects";
-  requestUrl(url, {}, access_token, gotProjects);
-}
-
-function gotProjects(response) { 
-  console.log('Projects response: ', response);
-  for (var i = 0; i < response.projects.length; ++i) {
-    var url = "maps";
-    var data = {
-      projectId: response.projects[i].id
-    }
-
-    requestUrl(url, data, access_token, gotMaps);
+  var url = "maps";
+  var data = {
+    projectId: '10446176163891957399',
   }
+
+  requestUrl(url, data, access_token, gotMaps);
 }
 
 function gotMaps(response) {
@@ -146,6 +138,17 @@ function gotMaps(response) {
     ]
     $("#output").html(
       $("#output").html() + text.join('<br>'));
+  }
+
+  if (response.nextPageToken) {
+    console.log('Requesting additional page');
+    var url = "maps";
+    var data = {
+      projectId: '10446176163891957399',
+      pageToken: response.nextPageToken
+    }
+
+    requestUrl(url, data, access_token, gotMaps);
   }
 }
 </script>
