@@ -132,7 +132,7 @@ function gotProjects(response) {
 
 function gotMaps(response) {
   console.log('Maps response: ', maps);
-  for (var i = 0; i < response.maps.length; ++i) }
+  for (var i = 0; i < response.maps.length; ++i) {
     $("#output").html(
       $("#output").html() + response.maps[i].id + '<br>');
   }
