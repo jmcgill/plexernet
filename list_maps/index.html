@@ -130,10 +130,12 @@ function gotMaps(response) {
   console.log('Maps response: ', response);
   for (var i = 0; i < response.maps.length; ++i) {
     var map = response.maps[i];
+    var url = "https://mapsengine.google.com/" + map.id + "/mapview/?version=2&hl=en";
     var text = [
       '<b>Name</b>: ' + map.name,
       '<b>Description</b>: ' + map.description,
       '<b>Id</b>: ' + map.id,
+      '<b>Url</b>: ' + url,
       '<hr>'
     ]
     $("#output").html(
