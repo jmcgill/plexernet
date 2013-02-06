@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://earth.google.com/kml/2.2">
+<Document>
+  <name>Zurich Tram</name>
+  <open>1</open>  
+  <Folder>
+    <name>Folder here</name>
+    <Placemark>
+      <Style id="tram">  
+        <IconStyle>
+          <Icon>
+            <href>http://plexer.net/work/git/kml/zurich_tram_small.jpg</href>
+          </Icon>
+        </IconStyle>
+      </Style>
+      <name>Tram 14</name>
+      <description>
+        <![CDATA[
+          A Tram in Zurich
+          <img src="http://plexer.net/work/git/kml/zurich_tram_wide_small.jpg">
+          http://www.google.com
+          <a href="http://www.google.com">http://www.google.com</a>
+        ]]>
+      </description>
+      <Point>
+        <coordinates>
+          8.521285,47.370430
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>A short line</name>
+      <description>
+        Description of the line
+      </description>
+      <LineString>
+        <coordinates>
+          8.520009,47.369532
+          8.508435,47.369514
+        </coordinates>
+      </LineString>
+    </Placemark>
+  </Folder>
+</Document>
+</kml>
