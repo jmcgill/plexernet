@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <kml xmlns="http://www.opengis.net/kml/2.2">
 <Document>
-  <Style id="mystyle">
-    <BalloonStyle>
-      <text><![CDATA["
-<img src="$[url]">$[description]</img>"
-]]></text>
-    </BalloonStyle>
-  </Style>
   <Placemark id="feature id">
     <name>http://foo.com" target="pwn3d</name>
     <description>Feature</description>
     <styleUrl>#mystyle</styleUrl>
+    <Style id="mystyle">
+      <BalloonStyle>
+        <text><![CDATA["
+<img src="$[url]">$[description]</img>"
+]]></text>
+      </BalloonStyle>
+    </Style>
     <ExtendedData>
       <Data name="url">
-        <value><![CDATA[http://www.google.com]]></value>
+        <value><![CDATA[http://o.onionstatic.com/images/7/7954/original/700.hq.jpg?3818]]></value>
       </Data>
     </ExtendedData>
     <Point>
