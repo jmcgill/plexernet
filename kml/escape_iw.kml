@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document>
+  <Placemark id="feature id">
+    <name>http://foo.com" target="pwn3d</name>
+    <description>Feature</description>
+    <styleUrl>#mystyle</styleUrl>
+    <Style id="mystyle">
+      <BalloonStyle>
+        <text><![CDATA[$[url]]]></text>
+      </BalloonStyle>
+    </Style>
+    <ExtendedData>
+      <Data name="url">
+        <value><![CDATA[http://www.google.com]]></value>
+      </Data>
+    </ExtendedData>
+    <Point>
+      <coordinates>-93.70944368012236,40.040605367657,0</coordinates>
+    </Point>
+  </Placemark>
+</Document>
+</kml>
