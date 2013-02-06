@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document>
+  <Style id="mystyle">
+    <BalloonStyle>
+      <text><![CDATA["
+<img src="$[url]">$[description]</img>"
+]]></text>
+    </BalloonStyle>
+  </Style>
+  <Placemark id="feature id">
+    <name>http://foo.com" target="pwn3d</name>
+    <description>Feature</description>
+    <styleUrl>#mystyle</styleUrl>
+    <ExtendedData>
+      <Data name="url">
+        <value><![CDATA[http://www.google.com]]></value>
+      </Data>
+    </ExtendedData>
+  </Placemark>
+</Document>
+</kml>
