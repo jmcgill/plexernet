@@ -17,6 +17,9 @@
         <value><![CDATA[http://www.google.com]]></value>
       </Data>
     </ExtendedData>
+    <Point>
+      <coordinates>-93.70944368012236,40.040605367657,0</coordinates>
+    </Point>
   </Placemark>
 </Document>
 </kml>
