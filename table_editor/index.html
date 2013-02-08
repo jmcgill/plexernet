@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <title>Maps Engine Table Editor</title>
+    <style type="text/css">
+      html { height: 100% }
+      body { height: 100%; margin: 25; padding: 0 }
+      #header {
+        height: 30px;
+      }
+      
+      .google_table {
+        border-collapse: collapse;
+        text-align: center;
+        vertical-align: middle;
+      }
+      
+      .google_table tr th {
+        height: 32px;
+        background-color: rgb(241, 241, 241);
+        border: solid 1px rgb(215, 215, 215);
+        color: rgb(90, 84, 85);
+        font-family: arial, sans-serif;
+        font-size: 13px;
+        padding: 8px;
+        vertical-align: top;
+      }
+
+      .google_table tr {
+        height: 32px;
+        /*background-color: rgb(255, 255, 204);*/
+        border: solid 1px rgb(215, 215, 215);
+        color: rgb(0, 0, 0);
+        font-family: arial, sans-serif;
+        font-size: 13px;
+        padding: 8px;
+        vertical-align: top;
+      }
+
+      .google_table td {
+        vertical-align: middle;
+        cursor: default;
+      }
+      
+      .google_table input {
+        height: 100%;
+        width: 100%;
+        border: none;
+        vertical-align: middle;
+        text-align: center;
+        font-family: arial, sans-serif;
+        font-size: 13px;
+      }
+ 
+      .highlighted {
+        background-color: rgb(255, 255, 204);
+      }
+
+      #add_a_row {
+color: rgb(68, 68, 68);
+cursor: pointer;
+display: block;
+font-family: arial, sans-serif;
+font-size: 11px;
+font-style: normal;
+font-variant: normal;
+font-weight: normal;
+height: 24px;
+line-height: 24px;
+position: relative;
+white-space: nowrap;
+width: 61px;
+      }
+
+      #delete_a_row {
+color: rgb(68, 68, 68);
+cursor: pointer;
+display: block;
+font-family: arial, sans-serif;
+font-size: 11px;
+font-style: normal;
+font-variant: normal;
+font-weight: normal;
+height: 24px;
+line-height: 24px;
+position: relative;
+white-space: nowrap;
+width: 61px;
+      }
+
+
+      #add_image {
+-webkit-background-clip: border-box;
+-webkit-background-origin: padding-box;
+-webkit-background-size: auto;
+background-attachment: scroll;
+background-clip: border-box;
+background-color: rgba(0, 0, 0, 0);
+background-image: url(https://www.gstatic.com/mapspro/images/table-sprite000.png);
+background-origin: padding-box;
+background-position: -21px 0px;
+background-repeat: no-repeat;
+background-size: auto;
+color: rgb(68, 68, 68);
+cursor: pointer;
+display: block;
+float: left;
+font-family: arial, sans-serif;
+font-size: 11px;
+font-style: normal;
+font-variant: normal;
+font-weight: normal;
+height: 21px;
+line-height: 24px;
+position: relative;
+top: 2px;
+white-space: nowrap;
+width: 21px;
+      }
+     </style>
+
+    <!-- Load the playground implementation -->
+    <script type="text/javascript" src="auth.js"></script>
+    <script type="text/javascript" src="table.js"></script>
+    <script type="text/javascript" src="playground.js"></script>
+
+    <!-- Load jQuery for cross-browser support. -->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="https://apis.google.com/js/auth.js?onload=initialize"></script>
+  </head>
+
+  <body>
+  <input type="button" value="Authorize" id="authorize_button"/>
+
+  <table border="0">
+  <tr>
+  <td width="75px">
+  <div id="add_a_row">
+    <div id="add_image"></div>
+    Add a row
+  </div>
+  </td>
+  <td width="75px">
+  <div id="delete_a_row">
+    <div id="add_image"></div>
+    Delete row
+  </div>
+  </td>
+  <td><img src="left.png"/></td>
+  <td><img src="right.png" id="next"/></td>
+  <tr>
+  </table>
+  <br>
+  <div id="table"></div>
+  </body>
+</html>

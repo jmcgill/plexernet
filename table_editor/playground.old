@@ -1,0 +1,181 @@
+// This program uses the Maps Engine API to implement the behaviour of
+// the radius search example web page.
+
+// Map variable, so we can add markers to the map.
+var map;
+var client;
+var oauth_token;
+
+// Replace these details with your own.
+var authConfig = {
+  client_id: '57681607714-sm4cb5ifh5l64qgdmgkf6ca3m5teqobn.apps.googleusercontent.com',
+  scopes: ['https://www.googleapis.com/auth/mapsengine'],
+  redirect: 'http://plexer.net/work/mutation_playground'
+};
+
+function initialize() {
+  client = new OAuthClientSample(
+    authConfig.client_id,
+    authConfig.redirect,
+    authConfig.scopes);
+
+  // Has this page been loaded with valid credentials?
+  var token = client.getAccessToken(handleAccessToken);
+}
+
+function handleAccessToken(token) {
+  if (!token) {
+    client.requestAccessToken();
+    return;
+  }
+
+  // The token has been verified, so we can now cache it.
+  oauth_token = token;
+
+  // Find all the features in the table.
+  var url = "https://www.googleapis.com/mapsengine/v1beta2/tables/10258059232491603613-13364521397325580695/features";
+  parameters = {
+    access_token: oauth_token,
+  };
+
+  jQuery.ajax({
+    url: url,
+    data: parameters,
+    success: handleApiResponse,
+    error: handleApiError
+   });
+}
+
+function handleApiResponse(response) {
+  var table = $("<table border='1'>");
+  var tr = $("<tr>");
+  table.append(tr);
+
+  for (var property in response.schema) {
+    var td = $("<td>");
+    td.html(property + '<br>(' + response.schema[property].type + ')');
+    tr.append(td);    
+  }
+
+  var td = $("<td>");
+  td.html("Save");
+  tr.append(td);    
+
+  var td = $("<td>");
+  td.html("Delete");
+  tr.append(td);    
+  
+  for (var i = 0; i < response.features.length; ++i) {
+    var feature = response.features[i];
+    var tr = $("<tr>");
+    table.append(tr);
+    
+    for (var property in response.schema) {
+      var td = $("<td>");
+      if (property == "geometry") {
+        td.html("...");
+      } else {
+        var input = $("<input>");
+        var properties = feature.properties || {};
+        input.val(properties[property] || '');
+        td.append(input);
+     } 
+
+     tr.append(td);    
+    }
+
+    var td = $("<td>");
+    var button = $("<button>");
+    button.html("Save");
+    td.append(button);
+    tr.append(td);
+
+    // Save on click.
+    button.click(function(id, inner_tr) {
+     return function() {
+       var p = {};
+
+       var i = 0;
+       for (var property in response.schema) {
+         ++i;
+         if (property == "geometry") continue;
+    
+         p[property] = $(inner_tr).find(":nth-child(" + i + ")").find(">:first-child").val(); 
+       }
+
+       console.log('ID IS: ', id);
+ 
+       var mutation = {
+         "features": [{
+           "id": id,
+           "properties": p
+         }]
+       };
+
+       var url = "https://www.googleapis.com/mapsengine/v1beta2/tables/10258059232491603613-13364521397325580695/features/batchPatch";
+
+       jQuery.ajax({
+         type: 'POST',
+         url: url,
+         dataType: 'json',
+         contentType: 'application/json',
+         headers: { 'Authorization': 'Bearer ' + oauth_token },
+         data: JSON.stringify(mutation),
+         success: handleEditResponse,
+         error: handleApiError
+       });
+ 
+       return false;
+     }
+    }(feature.id, tr));
+
+    var td = $("<td>");
+    var button = $("<button>");
+    button.html("Delete");
+    td.append(button);
+    tr.append(td);
+
+    button.click(function (id, inner_tr) {
+      return function() {
+      var url = "https://www.googleapis.com/mapsengine/v1beta2/tables/10258059232491603613-13364521397325580695/features/batchDelete";
+
+      data = { featureIds: [id] };
+     
+       jQuery.ajax({
+         type: 'POST',
+         url: url,
+         dataType: 'json',
+         contentType: 'application/json',
+         headers: { 'Authorization': 'Bearer ' + oauth_token },
+         data: JSON.stringify(data),
+         success: function() { handleDeleteResponse(inner_tr) },
+         error: handleApiError
+       });
+       return false;
+     }
+     }(feature.id, tr));
+   }
+
+  $("#table").append(table); 
+}
+
+function handleApiError(obj, textStatus, errorThrown) {
+  var response = JSON.parse(obj.responseText);
+  var str = JSON.stringify(response, undefined, 2);
+  alert('An error occured - see the Javascript Console for deatils.');
+  window.console.log(str);
+}
+
+function handleEditResponse(response) {
+  message('Saved!');
+}
+
+function handleDeleteResponse(tr) {
+  message('Deleted!');
+  tr.remove(); 
+}
+
+function message(text) {
+  $("#message").html(text);
+  window.setTimeout(function() { $("#message").html(""); }, 2000);
+}
