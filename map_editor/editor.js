@@ -159,7 +159,7 @@ Editor.prototype.onFeatureClick = function(e) {
   var url = this.base_ + tableId + "/features";
   parameters = {
     access_token: this.access_token_,
-    where: "name=f" + (parseInt(e.featureId, 10) - 1)
+    where: "name=f'" + (parseInt(e.featureId, 10) - 1) + "'"
   };
 
   jQuery.ajax({
@@ -172,6 +172,11 @@ Editor.prototype.onFeatureClick = function(e) {
 
 Editor.prototype.readComplete = function(result) {
   console.log(result);
+
+  var table_div = $("<div>");
+  $("#status_div").append(table_div);
+  var table = new Table(result.schema, table_div, null);
+  table.setFeature(result.features[0]);
 }
 
 Editor.prototype.onApiError = function() {
