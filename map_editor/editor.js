@@ -218,6 +218,7 @@ Editor.prototype.updateFeature = function(type, feature, property, value) {
 
 Editor.prototype.updateAddress = function(location) {
   this.marker_.setPosition(location);
+  this.map_.setCenter(location);
 }
 
 Editor.prototype.onAutocomplete = function() {
