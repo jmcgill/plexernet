@@ -159,7 +159,7 @@ Editor.prototype.onFeatureClick = function(e) {
   var url = this.base_ + tableId + "/features";
   parameters = {
     access_token: this.access_token_,
-    // where: "name=f" + (parseInt(e.featureId, 10) - 1)
+    where: "name=f" + (parseInt(e.featureId, 10) - 1)
   };
 
   jQuery.ajax({
