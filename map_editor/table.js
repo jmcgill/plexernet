@@ -3,7 +3,7 @@ function Table(schema, element, on_edit) {
   this.element_ = element;
   this.on_edit_ = on_edit;
 
-  this.table_ = $("<table border='1'>");
+  this.table_ = $("<table border='1' width='100%'>");
   this.table_.addClass('google_table');
   $(this.element_).append(this.table_);
 }
@@ -15,6 +15,7 @@ Table.prototype.setFeature = function(feature) {
     var tr = $("<tr>");
     
     var td = $("<td>");
+    td.addClass('heading');
     td.html(property);
     tr.append(td);
 
