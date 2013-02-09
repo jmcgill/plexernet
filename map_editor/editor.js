@@ -216,6 +216,10 @@ Editor.prototype.updateFeature = function(type, feature, property, value) {
   console.log('Saving: ', property, ' value: ', value);
 }
 
+Editor.prototype.onDragEnd = function(type, feature, property, value) {
+  this.table_.invalidateAddress();
+}
+
 Editor.prototype.updateAddress = function(location) {
   this.marker_.setPosition(location);
   this.map_.setCenter(location);
@@ -237,6 +241,7 @@ Editor.prototype.editGeometry = function(e, img, msg) {
   msg.html("Edit the <b>address</b> property or drag the marker to set a new position.");
   img.attr('src', 'save_location.png');
   this.marker_.set('draggable', true);
+  google.maps.event.addListener(this.marker_, 'dragend', bind(this, this.onDragEnd));
   this.table_.SetAddressEditable(true);
 
   img.unbind();

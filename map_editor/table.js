@@ -123,6 +123,11 @@ Table.prototype.onAutocomplete = function(cell, input) {
   var place = this.autocomplete_.getPlace();
   this.on_address_update_(place.geometry.location);
   cell.html(input.val());
+  this.address_cell_.css('color', 'black');
+}
+
+Table.prototype.invalidateAddress = function() {
+  this.address_cell_.css('color', 'red');
 }
 
 Table.prototype.GetSelectedFeatureId = function() {
