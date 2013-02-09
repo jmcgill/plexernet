@@ -8,7 +8,7 @@ function Table(schema, element, on_edit) {
   $(this.element_).append(this.table_);
 }
 
-Table.prototype.SetFeature = function(feature) {
+Table.prototype.setFeature = function(feature) {
   this.table_.html("");
 
   for (var property in this.schema_) {
