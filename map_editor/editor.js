@@ -192,7 +192,11 @@ Editor.prototype.readComplete = function(result) {
 
   var table_div = $("<div>");
   $("#status_div").append(table_div);
-  this.table_ = new Table(result.schema, table_div, bind(this, this.updateFeature));
+  this.table_ = new Table(
+    result.schema,
+    table_div,
+    bind(this, this.updateFeature),
+    bind(this, this.updateAddress));
   this.table_.setFeature(result.features[0]);
 
   var msg = $("<div>");
@@ -210,6 +214,10 @@ Editor.prototype.onApiError = function() {
 
 Editor.prototype.updateFeature = function(type, feature, property, value) {
   console.log('Saving: ', property, ' value: ', value);
+}
+
+Editor.prototype.updateAddress = function(location) {
+  this.marker_.setPosition(location);
 }
 
 Editor.prototype.onAutocomplete = function() {

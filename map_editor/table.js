@@ -1,7 +1,8 @@
-function Table(schema, element, on_edit) {
+function Table(schema, element, on_edit, on_address_update) {
   this.schema_ = schema;
   this.element_ = element;
   this.on_edit_ = on_edit;
+  this.on_address_update_ = on_address_update;
 
   this.table_ = $("<table border='1' width='100%'>");
   this.table_.addClass('google_table');
@@ -100,8 +101,12 @@ Table.prototype.SelectAddress = function(e, row, cell, feature, property) {
 
   var input = $("<input>");
   input.val(cell.html());
-  input.blur(bind(this, this.CellBlur, row, cell, feature, property, input));
-  input.keypress(bind(this, this.CellKey, cell, feature, property, input));
+
+  this.autocomplete_ = new google.maps.places.Autocomplete(input.get(0));
+  google.maps.event.addListener(this.autocomplete_, 'place_changed', bind(this, this.onAutocomplete, cell));
+
+  //input.blur(bind(this, this.CellBlur, row, cell, feature, property, input));
+  //input.keypress(bind(this, this.CellKey, cell, feature, property, input));
 
   cell.html("");
   cell.append(input);
@@ -112,6 +117,12 @@ Table.prototype.SelectAddress = function(e, row, cell, feature, property) {
     cell: cell,
     property: property
   };
+}
+
+Table.prototype.onAutocomplete = function(cell) {
+  var place = this.autocomplete_.getPlace();
+  this.on_address_update_(place.geometry.location);
+  cell.html(input.val());
 }
 
 Table.prototype.GetSelectedFeatureId = function() {
