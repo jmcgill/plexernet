@@ -34,10 +34,10 @@ var clientId = '57681607714-aduf3qj266i45g3euj9b8arn22b6fuu3.apps.googleusercont
 var scopes = 'https://www.googleapis.com/auth/earthbuilder.readonly';
 
 // The Asset ID of the Maps Engine Layer to display.
-var layerId = '10258059232491603613-08645155700905327807';
+var layerId = '10258059232491603613-15490673538534354226';
 
 // The ID of the table in this Layer.
-var tableId = '';
+var tableId = '10258059232491603613-16662292092244014545';
 
 function bind(scope, fn) {
   var args = Array.prototype.slice.call(arguments, 2);
@@ -153,7 +153,7 @@ Editor.prototype.showMap = function(access_token, expires_in) {
 
 Editor.prototype.onFeatureClick = function(e) {
   // Find all the features in the table.
-  var url = this.base_ + "10258059232491603613-13364521397325580695/features";
+  var url = this.base_ + tableId + "/features";
   parameters = {
     access_token: this.access_token_,
     where: "name=f" + (parseInt(e.featureId, 10) - 1)
