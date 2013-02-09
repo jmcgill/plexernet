@@ -126,7 +126,8 @@ Editor.prototype.showMap = function(access_token, expires_in) {
   var mapOptions = {
     center: new google.maps.LatLng(0,0),
     zoom: 7,
-    mapTypeId: google.maps.MapTypeId.ROADMAP
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    disableDefaultUI: true,
   };
   this.map_ = new google.maps.Map(
       document.getElementById("map_canvas"),
