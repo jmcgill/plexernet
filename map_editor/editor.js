@@ -123,7 +123,7 @@ Editor.prototype.showMap = function(access_token, expires_in) {
   // Create a new Google Maps API Map
   var mapOptions = {
     center: new google.maps.LatLng(0,0),
-    zoom: 4,
+    zoom: 7,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   };
   map = new google.maps.Map(
@@ -140,9 +140,9 @@ Editor.prototype.showMap = function(access_token, expires_in) {
 
   // Add an event listener which modifies the bounds of the Map to best fit
   // the Layer once the layer has loaded.
-  google.maps.event.addListener(mapsEngineLayer, 'bounds_changed', function() {
-    map.fitBounds(mapsEngineLayer.get('bounds'));
-  });
+  //google.maps.event.addListener(mapsEngineLayer, 'bounds_changed', function() {
+  //  map.fitBounds(mapsEngineLayer.get('bounds'));
+  //});
 
   google.maps.event.addListener(mapsEngineLayer, 'click', bind(this, this.onFeatureClick));
 
