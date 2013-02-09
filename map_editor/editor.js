@@ -31,7 +31,9 @@
 var clientId = '57681607714-aduf3qj266i45g3euj9b8arn22b6fuu3.apps.googleusercontent.com';
 
 // The oauth scope for displaying Maps Engine data.
-var scopes = 'https://www.googleapis.com/auth/earthbuilder.readonly';
+var scopes = [
+    'https://www.googleapis.com/auth/earthbuilder.readonly',
+    'https://www.googleapis.com/auth/mapsengine'];
 
 // The Asset ID of the Maps Engine Layer to display.
 var layerId = '10258059232491603613-15490673538534354226';
