@@ -132,6 +132,12 @@ Editor.prototype.showMap = function(access_token, expires_in) {
       document.getElementById("map_canvas"),
       mapOptions);
 
+  var input = document.getElementById('autocomplete');
+  this.autocomplete_ = new google.maps.places.Autocomplete(input);
+  this.autocomplete_.bindTo('bounds', map);
+
+  google.maps.event.addListener(autocomplete, 'place_changed', bind(this, this.onAutocomplete));
+
   // Add a Maps Engine Layer to this Map. The access_token granted by the oauth
   // flow is used here to access user data.
   mapsEngineLayer = new google.maps.visualization.MapsEngineLayer({
@@ -195,6 +201,16 @@ Editor.prototype.onApiError = function() {
 
 Editor.prototype.updateFeature = function(type, feature, property, value) {
   console.log('Saving: ', property, ' value: ', value);
+}
+
+Editor.prototype.onAutocomplete = function() {
+  var place = this.autocomplete_.getPlace();
+  if (place.geometry.viewport) {
+    this.map_.fitBounds(place.geometry.viewport);
+  } else {
+    this.map_.setCenter(place.geometry.location);
+    this.map_.setZoom(17);  // Why 17? Because it looks good.
+  }
 }
 
 // This function is called once the oauth token has expired. It starts an
