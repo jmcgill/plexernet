@@ -116,6 +116,9 @@ function Editor() {
 // This function is called once handleAuthResult detects that authorization
 // has been provided.
 Editor.prototype.showMap = function(access_token, expires_in) {
+  // Store the access_token
+  this.access_token_ = access_token;
+
   // Create a new Google Maps API Map
   var mapOptions = {
     center: new google.maps.LatLng(0,0),
@@ -149,7 +152,27 @@ Editor.prototype.showMap = function(access_token, expires_in) {
 }
 
 Editor.prototype.onFeatureClick = function(e) {
-  window.console.log(e);
+  // Find all the features in the table.
+  var url = this.base_ + "10258059232491603613-13364521397325580695/features";
+  parameters = {
+    access_token: this.access_token_,
+    where: "name=f" + (parseInt(e.featureId, 10) - 1)
+  };
+
+  jQuery.ajax({
+    url: url,
+    data: parameters,
+    success: bind(this, this.readComplete),
+    error: bind(this, this.onApiError)
+  });
+}
+
+Editor.prototype.readComplete = function(result) {
+  console.log(result);
+}
+
+Editor.prototype.onApiError = function() {
+  alert('Error');
 }
 
 // This function is called once the oauth token has expired. It starts an
