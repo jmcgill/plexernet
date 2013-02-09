@@ -228,6 +228,7 @@ Editor.prototype.editGeometry = function(e, img, msg) {
   msg.html("Edit the <b>address</b> property or drag the marker to set a new position.");
   img.attr('src', 'save_location.png');
   this.marker_.set('draggable', true);
+  this.table_.SetAddressEditable(true);
 
   img.unbind();
   img.click(bind(this, this.updateFeatureGeography));
@@ -236,6 +237,7 @@ Editor.prototype.editGeometry = function(e, img, msg) {
 Editor.prototype.updateFeatureGeography = function(e) {
   // TODO(jmcgill): Do something clever if address and location both change.
   console.log('Saving new location: ', this.marker_.getPosition());
+  this.table_.SetAddressEditable(false);
 }
 
 // This function is called once the oauth token has expired. It starts an
