@@ -30,7 +30,8 @@ Table.prototype.setFeature = function(feature) {
       var text = (properties[property] || '');
       td.html(text);
       td.addClass('header');
-
+      
+      this.address_cell_ = td;
       td.click(bind(this, this.SelectAddress, tr, td, feature, property));
     } else {
       var properties = feature.properties || {};
@@ -50,6 +51,11 @@ Table.prototype.setFeature = function(feature) {
 
 Table.prototype.SetAddressEditable = function(b) {
   this.address_editable_ = b;
+  if (b) {
+    this.address_cell_.removeClass("header");
+  } else {
+    this.address_cell_.addClass("header");
+  }
 }
 
 Table.prototype.SelectRow = function(e, tr, id) {
@@ -85,8 +91,12 @@ Table.prototype.SelectCell = function(e, row, cell, feature, property) {
 }
 
 Table.prototype.SelectAddress = function(e, row, cell, feature, property) {
+  console.log('Trying to edit address');
+
   if (this.selected_cell_ && cell == this.selected_cell_.cell) return;
   if (!this.address_editable_) return;
+
+  console.log('Editing address');
 
   var input = $("<input>");
   input.val(cell.html());
