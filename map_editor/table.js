@@ -74,7 +74,7 @@ Table.prototype.SelectCell = function(e, row, cell, feature, property) {
   var input = $("<input>");
   input.val(cell.html());
   input.blur(bind(this, this.CellBlur, row, cell, feature, property, input));
-  input.keypress(bind(this, this.CellKey, row, cell, feature, property, input));
+  input.keypress(bind(this, this.CellKey, cell, feature, property, input));
 
   cell.html("");
   cell.append(input);

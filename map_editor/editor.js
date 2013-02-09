@@ -136,7 +136,8 @@ Editor.prototype.showMap = function(access_token, expires_in) {
   // flow is used here to access user data.
   mapsEngineLayer = new google.maps.visualization.MapsEngineLayer({
     layerId: layerId,
-    oAuthToken: access_token
+    oAuthToken: access_token,
+    suppressInfoWindows: true
   });
   mapsEngineLayer.setMap(this.map_);
 
