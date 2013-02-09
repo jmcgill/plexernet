@@ -195,10 +195,13 @@ Editor.prototype.readComplete = function(result) {
   var table = new Table(result.schema, table_div, bind(this, this.updateFeature));
   table.setFeature(result.features[0]);
 
+  var msg = $("<div>");
+  $("#status_div").append(msg);
+
   var img = $("<img src='edit_location.png'>");
   $("#status_div").append(img);
   img.addClass('button');
-  img.click(bind(this, this.editGeometry));
+  img.click(bind(this, this.editGeometry, img, msg));
 }
 
 Editor.prototype.onApiError = function() {
@@ -219,9 +222,11 @@ Editor.prototype.onAutocomplete = function() {
   }
 }
 
-Editor.prototype.editGeometry = function() {
+Editor.prototype.editGeometry = function(e, img, msg) {
   this.layer_.setMap(null);
   this.marker_.setIcon("http://bubbysbread.com/wordpress/wp-content/uploads/2012/02/blue-map-marker.gif");
+  msg.html("Edit the <b>address</b> property or drag the marker to set a new position.");
+  img.attr('src', 'save_location.png');
 }
 
 // This function is called once the oauth token has expired. It starts an
