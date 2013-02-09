@@ -12,6 +12,7 @@ Table.prototype.setFeature = function(feature) {
   this.table_.html("");
 
   for (var property in this.schema_) {
+    console.log('Property: ', property);
     var tr = $("<tr>");
     
     var td = $("<td>");
@@ -31,10 +32,9 @@ Table.prototype.setFeature = function(feature) {
     }
 
     td.click(bind(this, this.SelectCell, tr, td, feature, property));
-    tr.append(td);    
+    tr.append(td);
+    this.table_.append(tr);
   }
-
-  this.table_.append(tr);
 
   // Bind events.
   // tr.click(bind(this, this.SelectRow, tr, feature.id));
