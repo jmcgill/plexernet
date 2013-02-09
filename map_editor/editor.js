@@ -179,7 +179,7 @@ Editor.prototype.readComplete = function(result) {
   table.setFeature(result.features[0]);
 
   var marker = new google.maps.Marker({
-    position: result.latLng
+    position: result.latLng,
     map: this.map_
   });
 }
