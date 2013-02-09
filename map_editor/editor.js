@@ -192,8 +192,8 @@ Editor.prototype.readComplete = function(result) {
 
   var table_div = $("<div>");
   $("#status_div").append(table_div);
-  var table = new Table(result.schema, table_div, bind(this, this.updateFeature));
-  table.setFeature(result.features[0]);
+  this.table_ = new Table(result.schema, table_div, bind(this, this.updateFeature));
+  this.table_.setFeature(result.features[0]);
 
   var msg = $("<div>");
   $("#status_div").append(msg);
