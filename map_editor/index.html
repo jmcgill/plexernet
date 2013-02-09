@@ -25,6 +25,24 @@
     z-index: 10;
   }
 
+  #failed_geocodes {
+    position: absolute;
+    top: 54px;
+    left: 1200px;
+    height: 32px;
+    width: 220px;
+    -webkit-box-shadow: 3px 3px 3px #888;
+    -webkit-border-radius: 3px;
+    background: white;
+    font-family: helvetica, sans-serif;
+    margin: 5px;
+    overflow: auto;
+    color: #808080;
+    font-size: 14px;
+    padding: 5px;
+    z-index: 10;
+  }
+
   #autocomplete {
     height: 32px;
     border: solid 1px rgb(215, 215, 215);
@@ -99,5 +117,9 @@
 <div id="map_canvas" style="height: 100%; width: 100%;"></div>
 <input id="autocomplete"></input>
 <div id="status_div"></div>
+<div id="failed_geocodes">
+  <img src="alert.png"/><span style="color: red;">25 Locations failed to Geocode</span><br>
+  <center><img src="fix.png"/></center>
+</div>
 </body>
 </html>
