@@ -227,8 +227,15 @@ Editor.prototype.editGeometry = function(e, img, msg) {
   this.marker_.setIcon("http://bubbysbread.com/wordpress/wp-content/uploads/2012/02/blue-map-marker.gif");
   msg.html("Edit the <b>address</b> property or drag the marker to set a new position.");
   img.attr('src', 'save_location.png');
-
   this.marker_.set('draggable', true);
+
+  img.unbind();
+  img.click(bind(this, this.updateFeatureGeography));
+}
+
+Editor.prototype.updateFeatureGeography = function(e) {
+  // TODO(jmcgill): Do something clever if address and location both change.
+  console.log('Saving new location: ', this.marker_.getPosition());
 }
 
 // This function is called once the oauth token has expired. It starts an
