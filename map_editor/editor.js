@@ -137,7 +137,7 @@ Editor.prototype.showMap = function(access_token, expires_in) {
   this.autocomplete_ = new google.maps.places.Autocomplete(input);
   this.autocomplete_.bindTo('bounds', this.map_);
 
-  google.maps.event.addListener(autocomplete, 'place_changed', bind(this, this.onAutocomplete));
+  google.maps.event.addListener(this.autocomplete_, 'place_changed', bind(this, this.onAutocomplete));
 
   // Add a Maps Engine Layer to this Map. The access_token granted by the oauth
   // flow is used here to access user data.
