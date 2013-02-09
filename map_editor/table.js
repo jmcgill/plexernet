@@ -30,6 +30,8 @@ Table.prototype.setFeature = function(feature) {
       var text = (properties[property] || '');
       td.html(text);
       td.addClass('header');
+
+      td.click(bind(this, this.SelectAddress, tr, td, feature, property));
     } else {
       var properties = feature.properties || {};
       var text = (properties[property] || '');
@@ -45,20 +47,9 @@ Table.prototype.setFeature = function(feature) {
   // Bind events.
   // tr.click(bind(this, this.SelectRow, tr, feature.id));
 }
- 
-Table.prototype.AddEmptyRow = function() {
-  var tr = $("<tr>");
-  this.table_.append(tr);
-    
-  for (var property in this.schema_) {
-    var td = $("<td>");
-    td.click(bind(this, this.SelectCell, tr, td, null, property));
-    tr.append(td);    
-  }
-  this.table_.append(tr);
 
-  // Bind events.
-  tr.click(bind(this, this.SelectRow, tr, null));
+Table.prototype.SetAddressEditable = function(b) {
+  this.address_editable_ = b;
 }
 
 Table.prototype.SelectRow = function(e, tr, id) {
@@ -76,6 +67,26 @@ Table.prototype.SelectRow = function(e, tr, id) {
 
 Table.prototype.SelectCell = function(e, row, cell, feature, property) {
   if (this.selected_cell_ && cell == this.selected_cell_.cell) return;
+
+  var input = $("<input>");
+  input.val(cell.html());
+  input.blur(bind(this, this.CellBlur, row, cell, feature, property, input));
+  input.keypress(bind(this, this.CellKey, cell, feature, property, input));
+
+  cell.html("");
+  cell.append(input);
+  input.focus();
+
+  this.selected_cell_ = {
+    feature: feature,
+    cell: cell,
+    property: property
+  };
+}
+
+Table.prototype.SelectAddress = function(e, row, cell, feature, property) {
+  if (this.selected_cell_ && cell == this.selected_cell_.cell) return;
+  if (!this.address_editable_) return;
 
   var input = $("<input>");
   input.val(cell.html());
