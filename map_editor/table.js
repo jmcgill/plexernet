@@ -15,7 +15,7 @@ Table.prototype.setFeature = function(feature) {
     var tr = $("<tr>");
     
     var td = $("<td>");
-    td.addClass('heading');
+    td.addClass('header');
     td.html(property);
     tr.append(td);
 
