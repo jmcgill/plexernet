@@ -103,7 +103,7 @@ Table.prototype.SelectAddress = function(e, row, cell, feature, property) {
   input.val(cell.html());
 
   this.autocomplete_ = new google.maps.places.Autocomplete(input.get(0));
-  google.maps.event.addListener(this.autocomplete_, 'place_changed', bind(this, this.onAutocomplete, cell));
+  google.maps.event.addListener(this.autocomplete_, 'place_changed', bind(this, this.onAutocomplete, cell, input));
 
   //input.blur(bind(this, this.CellBlur, row, cell, feature, property, input));
   //input.keypress(bind(this, this.CellKey, cell, feature, property, input));
@@ -119,7 +119,7 @@ Table.prototype.SelectAddress = function(e, row, cell, feature, property) {
   };
 }
 
-Table.prototype.onAutocomplete = function(cell) {
+Table.prototype.onAutocomplete = function(cell, input) {
   var place = this.autocomplete_.getPlace();
   this.on_address_update_(place.geometry.location);
   cell.html(input.val());
