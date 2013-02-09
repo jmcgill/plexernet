@@ -110,7 +110,8 @@ function handleAuthClick(event) {
 }
 
 
-function Editor() {
+function Editor() {3
+  this.base_ = "https://www.googleapis.com/mapsengine/v1beta2/tables/";
 }
 
 // This function is called once handleAuthResult detects that authorization
