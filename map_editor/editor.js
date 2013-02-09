@@ -170,14 +170,18 @@ Editor.prototype.onFeatureClick = function(e) {
     error: bind(this, this.onApiError)
   });
 
-  var marker = new google.maps.Marker({
-    position: e.latLng,
-    map: this.map_
-  });
+  if (this.marker_ ) {
+    this.marker_.setPosition(e.latLng);
+  } else {
+    this.marker_ = new google.maps.Marker({
+      position: e.latLng,
+      map: this.map_
+    });
+  }
 }
 
 Editor.prototype.readComplete = function(result) {
-  console.log(result);
+  $("#status_div").html("");
 
   var table_div = $("<div>");
   $("#status_div").append(table_div);
