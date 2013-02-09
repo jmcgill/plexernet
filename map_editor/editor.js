@@ -188,6 +188,8 @@ Editor.prototype.onFeatureClick = function(e) {
 }
 
 Editor.prototype.readComplete = function(result) {
+  console.log('Read complete: ', result);
+  
   $("#status_div").html("");
 
   var table_div = $("<div>");
