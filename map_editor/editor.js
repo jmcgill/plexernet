@@ -135,7 +135,7 @@ Editor.prototype.showMap = function(access_token, expires_in) {
 
   var input = document.getElementById('autocomplete');
   this.autocomplete_ = new google.maps.places.Autocomplete(input);
-  this.autocomplete_.bindTo('bounds', map);
+  this.autocomplete_.bindTo('bounds', this.map_);
 
   google.maps.event.addListener(autocomplete, 'place_changed', bind(this, this.onAutocomplete));
 
