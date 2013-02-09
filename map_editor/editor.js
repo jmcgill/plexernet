@@ -36,10 +36,10 @@ var scopes = [
     'https://www.googleapis.com/auth/mapsengine'];
 
 // The Asset ID of the Maps Engine Layer to display.
-var layerId = '10258059232491603613-15490673538534354226';
+var layerId = '10258059232491603613-09376608040401646663';
 
 // The ID of the table in this Layer.
-var tableId = '10258059232491603613-16662292092244014545';
+var tableId = '10258059232491603613-00550798328153843084';
 
 function bind(scope, fn) {
   var args = Array.prototype.slice.call(arguments, 2);
