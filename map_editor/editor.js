@@ -194,6 +194,9 @@ Editor.prototype.readComplete = function(result) {
   $("#status_div").append(table_div);
   var table = new Table(result.schema, table_div, bind(this, this.updateFeature));
   table.setFeature(result.features[0]);
+
+  var img = $("<img src='edit_location.png'>");
+  $("#status_div").append(img);
 }
 
 Editor.prototype.onApiError = function() {
