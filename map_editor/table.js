@@ -104,9 +104,9 @@ Table.prototype.CellBlur = function(e, row, cell, feature, property, input) {
   var new_feature = this.on_edit_(this.schema_[property].type, feature, property, input.val());
 
   // Remove and re-add the row.
-  var new_row = this.AddRow(new_feature);
-  row.replaceWith(new_row);
-  this.selected_.tr = new_row;
+  // var new_row = this.AddRow(new_feature);
+  // row.replaceWith(new_row);
+  // this.selected_.tr = new_row;
 }
 
 Table.prototype.CellKey = function(e, cell, feature, property, input) {

@@ -168,6 +168,11 @@ Editor.prototype.onFeatureClick = function(e) {
     success: bind(this, this.readComplete),
     error: bind(this, this.onApiError)
   });
+
+  var marker = new google.maps.Marker({
+    position: e.latLng,
+    map: this.map_
+  });
 }
 
 Editor.prototype.readComplete = function(result) {
@@ -177,12 +182,6 @@ Editor.prototype.readComplete = function(result) {
   $("#status_div").append(table_div);
   var table = new Table(result.schema, table_div, bind(this, this.updateFeature));
   table.setFeature(result.features[0]);
-
-  console.log('Creating marker at: ', result.latLng);
-  var marker = new google.maps.Marker({
-    position: result.latLng,
-    map: this.map_
-  });
 }
 
 Editor.prototype.onApiError = function() {
