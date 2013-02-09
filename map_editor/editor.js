@@ -1,3 +1,8 @@
+// TODO:
+// 1. Request feature details, and re-use the Table editing code to render as a vertical row.
+// 2. Add an 'edit geometry' button.
+// 3. Use Places Auto Complete for address and add a 'Refresh' button.
+
 // An example of how to use oauth to obtain authorization for a web application
 // to display Maps Engine layers readable by a user of that application.
 //
