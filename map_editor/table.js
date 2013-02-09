@@ -25,13 +25,19 @@ Table.prototype.setFeature = function(feature) {
     // Is this a geometry column?
     if (property == "geometry") {
       td.html("...");
+    } else if (property == "address") {
+      var properties = feature.properties || {};
+      var text = (properties[property] || '');
+      td.html(text);
+      td.addClass('header');
     } else {
       var properties = feature.properties || {};
       var text = (properties[property] || '');
       td.html(text);
+
+      td.click(bind(this, this.SelectCell, tr, td, feature, property));
     }
 
-    td.click(bind(this, this.SelectCell, tr, td, feature, property));
     tr.append(td);
     this.table_.append(tr);
   }
