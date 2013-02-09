@@ -128,7 +128,7 @@ Editor.prototype.showMap = function(access_token, expires_in) {
     zoom: 7,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   };
-  map = new google.maps.Map(
+  this.map_ = new google.maps.Map(
       document.getElementById("map_canvas"),
       mapOptions);
 
@@ -138,7 +138,7 @@ Editor.prototype.showMap = function(access_token, expires_in) {
     layerId: layerId,
     oAuthToken: access_token
   });
-  mapsEngineLayer.setMap(map);
+  mapsEngineLayer.setMap(this.map_);
 
   // Add an event listener which modifies the bounds of the Map to best fit
   // the Layer once the layer has loaded.
@@ -175,12 +175,21 @@ Editor.prototype.readComplete = function(result) {
 
   var table_div = $("<div>");
   $("#status_div").append(table_div);
-  var table = new Table(result.schema, table_div, null);
+  var table = new Table(result.schema, table_div, bind(this, this.updateFeature));
   table.setFeature(result.features[0]);
+
+  var marker = new google.maps.Marker({
+    position: result.latLng
+    map: this.map_
+  });
 }
 
 Editor.prototype.onApiError = function() {
   alert('Error');
+}
+
+Editor.prototype.saveFeature = function(type, feature, property, value) {
+  console.log('Saving: ', property, ' value: ', value);
 }
 
 // This function is called once the oauth token has expired. It starts an
