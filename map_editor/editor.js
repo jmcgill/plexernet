@@ -34,14 +34,19 @@ var layerId = '10258059232491603613-08645155700905327807';
 // The ID of the table in this Layer.
 var tableId = '';
 
+function bind(scope, fn) {
+  var args = Array.prototype.slice.call(arguments, 2);
+  return function() {
+    return fn.apply(scope, Array.prototype.slice.call(arguments).concat(args));
+  }
+};
+
 // This function is run when the page (including the Maps API and Google APIs
 // client libraries) have finished loading.
+var editor_;
 function initialize() {
+  editor_ = new Editor();
   checkAuth(false, handleAuthResult);
-  //window.setTimeout(
-  //  function() {
-  //    checkAuth(false, handleAuthResult);
-  //  }, 0);
 }
 
 // A shared function which checks if the user has previously authorized this
@@ -83,7 +88,7 @@ function handleAuthResult(authResult) {
   if (authResult && !authResult.error) {
     // The application is authorized. Hide the 'Authorization' button.
     authorizeButton.style.display = 'none';
-    showMap(authResult.access_token);
+    editor_.showMap(authResult.access_token);
   } else {
     // The application has not been authorized. Start the authorization flow
     // when the user clicks the button.
@@ -100,9 +105,12 @@ function handleAuthClick(event) {
 }
 
 
+function Editor() {
+}
+
 // This function is called once handleAuthResult detects that authorization
 // has been provided.
-function showMap(access_token, expires_in) {
+Editor.prototype.showMap = function(access_token, expires_in) {
   // Create a new Google Maps API Map
   var mapOptions = {
     center: new google.maps.LatLng(0,0),
@@ -127,10 +135,16 @@ function showMap(access_token, expires_in) {
     map.fitBounds(mapsEngineLayer.get('bounds'));
   });
 
+  google.maps.event.addListener(mapsEngineLayer, 'click', bind(this, this.onFeatureClick));
+
   // The access_token provided by the oauth flow is only valid for a certain
   // amount of time. Add a timer which will refresh the access_token after this
   // amount of time has elapsed, so that the Layer will continue to work.
-  window.setTimeout(refreshToken, expires_in * 1000);
+  // window.setTimeout(refreshToken, expires_in * 1000);
+}
+
+Editor.prototype.onFeatureClick = function(e) {
+  window.console.log(e);
 }
 
 // This function is called once the oauth token has expired. It starts an
