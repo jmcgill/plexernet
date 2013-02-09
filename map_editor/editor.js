@@ -178,6 +178,7 @@ Editor.prototype.readComplete = function(result) {
   var table = new Table(result.schema, table_div, bind(this, this.updateFeature));
   table.setFeature(result.features[0]);
 
+  console.log('Creating marker at: ', result.latLng);
   var marker = new google.maps.Marker({
     position: result.latLng,
     map: this.map_
@@ -188,7 +189,7 @@ Editor.prototype.onApiError = function() {
   alert('Error');
 }
 
-Editor.prototype.saveFeature = function(type, feature, property, value) {
+Editor.prototype.updateFeature = function(type, feature, property, value) {
   console.log('Saving: ', property, ' value: ', value);
 }
 
