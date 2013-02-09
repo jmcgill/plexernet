@@ -141,12 +141,12 @@ Editor.prototype.showMap = function(access_token, expires_in) {
 
   // Add a Maps Engine Layer to this Map. The access_token granted by the oauth
   // flow is used here to access user data.
-  mapsEngineLayer = new google.maps.visualization.MapsEngineLayer({
+  this.layer_ = new google.maps.visualization.MapsEngineLayer({
     layerId: layerId,
     oAuthToken: access_token,
     suppressInfoWindows: true
   });
-  mapsEngineLayer.setMap(this.map_);
+  this.layer_.setMap(this.map_);
 
   // Add an event listener which modifies the bounds of the Map to best fit
   // the Layer once the layer has loaded.
@@ -154,7 +154,7 @@ Editor.prototype.showMap = function(access_token, expires_in) {
   //  map.fitBounds(mapsEngineLayer.get('bounds'));
   //});
 
-  google.maps.event.addListener(mapsEngineLayer, 'click', bind(this, this.onFeatureClick));
+  google.maps.event.addListener(this.layer_, 'click', bind(this, this.onFeatureClick));
 
   // The access_token provided by the oauth flow is only valid for a certain
   // amount of time. Add a timer which will refresh the access_token after this
@@ -197,6 +197,8 @@ Editor.prototype.readComplete = function(result) {
 
   var img = $("<img src='edit_location.png'>");
   $("#status_div").append(img);
+  img.addClass('button');
+  img.click(bind(this, this.editGeometry));
 }
 
 Editor.prototype.onApiError = function() {
@@ -215,6 +217,11 @@ Editor.prototype.onAutocomplete = function() {
     this.map_.setCenter(place.geometry.location);
     this.map_.setZoom(17);  // Why 17? Because it looks good.
   }
+}
+
+Editor.prototype.editGeometry = function() {
+  this.layer_.setMap(null);
+  this.marker_.setIcon("http://bubbysbread.com/wordpress/wp-content/uploads/2012/02/blue-map-marker.gif");
 }
 
 // This function is called once the oauth token has expired. It starts an
