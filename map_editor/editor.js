@@ -57,7 +57,7 @@ function initialize() {
 
   // Position the failed geocodes element.
   var width = $(window).width();
-  $("#failed_geocodes").css('left', (width - 240) + 'px');
+  $("#failed_geocodes").css('left', (width - 250) + 'px');
 }
 
 // A shared function which checks if the user has previously authorized this
