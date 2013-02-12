@@ -54,6 +54,10 @@ var editor_;
 function initialize() {
   editor_ = new Editor();
   checkAuth(false, handleAuthResult);
+
+  // Position the failed geocodes element.
+  var width = $(window).width();
+  $("#failed_geocodes").css('left', (width - 230) + 'px');
 }
 
 // A shared function which checks if the user has previously authorized this
