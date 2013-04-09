@@ -97,7 +97,7 @@ function runQuery() {
     bounds.extend(coords[i]);
   }
 
-  map.setBounds(bounds);
+  map.fitToBounds(bounds);
 
   //https://www.googleapis.com/mapsengine/exp1/tables/02250638340526429730-01479809730917133075/features?maxResults=1000&where=ST_INTERSECTS(geometry, ST_GEOMFROMTEXT('POLYGON ((-74.4035339355469 40.6931341533081, -74.4021606445313 40.6931341533081, -74.4021606445313 40.6920928987952, -74.4035339355469 40.6920928987952, -74.4035339355469 40.6931341533081))'))
 }
