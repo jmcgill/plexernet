@@ -95,8 +95,8 @@ function runQuery() {
 </head>
 <body onload="initialize()">
 <input type="button" value="Authorize" id="authorize_button"></input><br>
-Query: <input type="text" width="700px" id="query" value="https://www.googleapis.com/mapsengine/exp1/tables/02250638340526429730-01479809730917133075/features?maxResults=1000&where=ST_INTERSECTS(geometry, ST_GEOMFROMTEXT('POLYGON ((-74.4035339355469 40.6931341533081, -74.4021606445313 40.6931341533081, -74.4021606445313 40.6920928987952, -74.4035339355469 40.6920928987952, -74.4035339355469 40.6931341533081))'))"></input><br>
-Polygon: <input type="text" width="700px" id="polygon" value="-74.4035339355469 40.6931341533081, -74.4021606445313 40.6931341533081, -74.4021606445313 40.6920928987952, -74.4035339355469 40.6920928987952, -74.4035339355469 40.6931341533081"></input><br>
+Query: <input type="text" style="width: 700px;" id="query" value="https://www.googleapis.com/mapsengine/exp1/tables/02250638340526429730-01479809730917133075/features?maxResults=1000&where=ST_INTERSECTS(geometry, ST_GEOMFROMTEXT('POLYGON ((-74.4035339355469 40.6931341533081, -74.4021606445313 40.6931341533081, -74.4021606445313 40.6920928987952, -74.4035339355469 40.6920928987952, -74.4035339355469 40.6931341533081))'))"></input><br>
+Polygon: <input type="text" style="width: 700px;" id="polygon" value="-74.4035339355469 40.6931341533081, -74.4021606445313 40.6931341533081, -74.4021606445313 40.6920928987952, -74.4035339355469 40.6920928987952, -74.4035339355469 40.6931341533081"></input><br>
 <input type="button" onclick="runQuery()" value="Update"></input>
 <div id="map_canvas" style="height: 100%; width: 100%;">
 </div>
