@@ -1,0 +1,101 @@
+
+<html>
+<head>
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=visualization&sensor=false"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="https://apis.google.com/js/client.js"></script>
+<script type="text/javascript" src="oauth_wrapper.js"></script>
+<script type="text/javascript">
+// The Client ID for your application, as configured on the Google APIs console.
+var clientId = '57681607714-aduf3qj266i45g3euj9b8arn22b6fuu3.apps.googleusercontent.com';
+
+// The oauth scope for displaying Maps Engine data.
+var scopes = 'https://www.googleapis.com/auth/earthbuilder.readonly';
+
+// The Asset ID of the Maps Engine Layer to display.
+var layerId = '10258059232491603613-08645155700905327807';
+
+function initialize() {
+  var wrapper = new OAuthWrapper(
+      clientId,
+      scopes,
+      document.getElementById('authorize_button'));
+
+  // Start the OAuth authentication flow.
+  wrapper.authorize(showMap, refreshLayer);
+}
+
+// This function is called when an access_token is first available.
+function showMap(authResult) {
+  console.log('Callback called');
+
+  // The token is valid, no need to show the button anymore.
+  var button = document.getElementById('authorize_button');
+  button.style.display = 'none';
+
+  // Create a new Google Maps API Map
+  var mapOptions = {
+    center: new google.maps.LatLng(0,0),
+    zoom: 4,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
+
+  map = new google.maps.Map(
+      document.getElementById("map_canvas"),
+      mapOptions);
+
+  // // Add a Maps Engine Layer to this Map. The access_token granted by the oauth
+  // // flow is used here to access user data.
+  // mapsEngineLayer = new google.maps.visualization.MapsEngineLayer({
+  //   layerId: layerId,
+  //   oAuthToken: authResult.access_token
+  // });
+  // mapsEngineLayer.setMap(map);
+
+  // // Add an event listener which modifies the bounds of the Map to best fit
+  // // the Layer once the layer has loaded.
+  // google.maps.event.addListener(mapsEngineLayer, 'bounds_changed', function() {
+  //   map.fitBounds(mapsEngineLayer.get('bounds'));
+  // });
+}
+
+// This function is called when a new access_token is available.
+function refreshLayer(authResult) {
+  // Do nothing.
+}
+
+function runQuery() {
+  var query = $("#query").val();
+  var polygon = $("#polygon").val();
+
+
+  // // Split the query into query arguments.
+  // var parts = query.split('?')[1].split('&');
+  // var parameters = {};
+  // for (var i = 0; i < parts.length; ++i) {
+  //   var sides = parts[i].split('=');
+  //   parameters[sides[0]] = sides[1];
+  // }
+
+  var parts = polygon.split(',');
+  var coords = [];
+  for (var i = 0; i < parts.length; ++i) {
+    var sides = parts.split[' '];
+    coords.push(new google.maps.LatLng(sides[1], sides[0]));
+  }
+
+  var polygon = new google.maps.Polygon({
+    paths: coords
+  });
+  polygon.setMap(map);
+
+  //https://www.googleapis.com/mapsengine/exp1/tables/02250638340526429730-01479809730917133075/features?maxResults=1000&where=ST_INTERSECTS(geometry, ST_GEOMFROMTEXT('POLYGON ((-74.4035339355469 40.6931341533081, -74.4021606445313 40.6931341533081, -74.4021606445313 40.6920928987952, -74.4035339355469 40.6920928987952, -74.4035339355469 40.6931341533081))'))
+}
+</script>
+</head>
+<body onload="initialize()">
+<input type="button" value="Authorize" id="authorize_button"></input>
+<div id="map_canvas" style="height: 100%; width: 100%;">
+</div>
+</body>
+</html>
