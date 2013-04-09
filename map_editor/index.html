@@ -1,0 +1,132 @@
+
+<html>
+<head>
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?v=3.exp&libraries=visualization,places&sensor=false"></script>
+<script type="text/javascript" src="editor.js"></script>
+<script type="text/javascript" src="table.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="https://apis.google.com/js/auth.js?onload=initialize"></script>
+<style type="text/css">
+  #status_div {
+    position: absolute;
+    top: 54px;
+    left: 15px;
+    height: 90%;
+    width: 340px;
+    -webkit-box-shadow: 3px 3px 3px #888;
+    -webkit-border-radius: 3px;
+    background: white;
+    font-family: helvetica, sans-serif;
+    margin: 5px;
+    overflow: auto;
+    color: #808080;
+    font-size: 14px;
+    padding: 5px;
+    z-index: 10;
+  }
+
+  #failed_geocodes {
+    position: absolute;
+    top: 15px;
+    left: 1175px;
+    height: 64px;
+    width: 220px;
+    -webkit-box-shadow: 3px 3px 3px #888;
+    -webkit-border-radius: 3px;
+    background: white;
+    font-family: helvetica, sans-serif;
+    margin: 5px;
+    overflow: auto;
+    color: #808080;
+    font-size: 14px;
+    padding: 5px;
+    z-index: 10;
+  }
+
+  #autocomplete {
+    height: 32px;
+    border: solid 1px rgb(215, 215, 215);
+    background: white;
+    top: 15px;
+    left: 19px;
+    z-index: 11;
+    position: absolute;
+    width: 350px;
+    -webkit-box-shadow: 3px 3px 3px #888;
+    -webkit-border-radius: 3px;
+  }
+
+  #header {
+    height: 30px;
+  }
+
+  .button {
+    cursor: pointer;
+  }
+
+  .google_table {
+    border-collapse: collapse;
+    text-align: center;
+    vertical-align: middle;
+  }
+  
+  .header {
+    height: 32px;
+    background-color: rgb(241, 241, 241);
+    border: solid 1px rgb(215, 215, 215);
+    color: rgb(90, 84, 85);
+    font-family: arial, sans-serif;
+    font-size: 13px;
+    padding: 8px;
+    vertical-align: top;
+    width: 50px;
+  }
+
+  .google_table tr {
+    height: 32px;
+    /*background-color: rgb(255, 255, 204);*/
+    border: solid 1px rgb(215, 215, 215);
+    color: rgb(0, 0, 0);
+    font-family: arial, sans-serif;
+    font-size: 13px;
+    padding: 8px;
+    vertical-align: top;
+    width: 100%;
+  }
+
+  .google_table td {
+    vertical-align: middle;
+    cursor: default;
+  }
+  
+  .google_table input {
+    height: 100%;
+    width: 100%;
+    border: none;
+    vertical-align: middle;
+    text-align: center;
+    font-family: arial, sans-serif;
+    font-size: 13px;
+  }
+
+  .highlighted {
+    background-color: rgb(255, 255, 204);
+  }
+
+  body {
+    margin: 0px;
+    padding: 0px;
+  }
+</style>
+</head>
+<body>
+<input type="button" value="Authorize" id="authorize_button" style="display: none;"></input>
+<div id="map_canvas" style="height: 100%; width: 100%;"></div>
+<input id="autocomplete"></input>
+<div id="status_div"></div>
+<div id="failed_geocodes">
+  <img src="alert.png"/><span style="color: red;">25 Locations failed to Geocode</span><br>
+  <a href="http://plexer.net/work/git/table_editor"><center><img src="fix.png"/></center></a>
+</div>
+</body>
+</html>
