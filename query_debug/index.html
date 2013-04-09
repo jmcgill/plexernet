@@ -81,7 +81,7 @@ function runQuery() {
   var coords = [];
   for (var i = 0; i < parts.length; ++i) {
     console.log(parts[i]);
-    var sides = parts[i].split(' ');
+    var sides = parts[i].trim().split(' ');
     coords.push(new google.maps.LatLng(sides[1], sides[0]));
     console.log(sides);
   }
