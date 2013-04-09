@@ -36,7 +36,7 @@ function showMap(authResult) {
   // Create a new Google Maps API Map
   var mapOptions = {
     center: new google.maps.LatLng(0,0),
-    zoom: 4,
+    zoom: 0,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   };
 
@@ -80,7 +80,7 @@ function runQuery() {
   var parts = polygon.split(',');
   var coords = [];
   for (var i = 0; i < parts.length; ++i) {
-    var sides = parts.split[' '];
+    var sides = parts.split(' ');
     coords.push(new google.maps.LatLng(sides[1], sides[0]));
   }
 
