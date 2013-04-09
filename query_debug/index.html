@@ -83,6 +83,7 @@ function runQuery() {
     var sides = parts[i].split(' ');
     coords.push(new google.maps.LatLng(sides[1], sides[0]));
   }
+  console.log('Coordinates: ', coords);
 
   var polygon = new google.maps.Polygon({
     paths: coords
