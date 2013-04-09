@@ -80,8 +80,10 @@ function runQuery() {
   var parts = polygon.split(',');
   var coords = [];
   for (var i = 0; i < parts.length; ++i) {
+    console.log(parts[i]);
     var sides = parts[i].split(' ');
     coords.push(new google.maps.LatLng(sides[1], sides[0]));
+    console.log(sides);
   }
   console.log('Coordinates: ', coords);
 
