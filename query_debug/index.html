@@ -80,7 +80,7 @@ function runQuery() {
   var parts = polygon.split(',');
   var coords = [];
   for (var i = 0; i < parts.length; ++i) {
-    var sides = parts.split(' ');
+    var sides = parts[i].split(' ');
     coords.push(new google.maps.LatLng(sides[1], sides[0]));
   }
 
