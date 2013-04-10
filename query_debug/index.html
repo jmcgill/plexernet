@@ -83,9 +83,18 @@ function runQuery() {
     console.log(parts[i]);
     var sides = parts[i].trim().split(' ');
     coords.push(new google.maps.LatLng(sides[1], sides[0]));
-    console.log(sides);
   }
-  coords.reverse();
+
+  var marker1 = new google.maps.Marker({
+    position: coords[0],
+    map: map,
+  });
+
+  var marker2 = new google.maps.Marker({
+    position: coords[0],
+    map: map,
+    icon: "http://www.roche.com/blue-dot.gif"
+  });
 
   var polygon = new google.maps.Polygon({
     paths: coords
