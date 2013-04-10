@@ -85,7 +85,7 @@ function runQuery() {
     coords.push(new google.maps.LatLng(sides[1], sides[0]));
     console.log(sides);
   }
-  console.log('Coordinates: ', coords);
+  coords.reverse();
 
   var polygon = new google.maps.Polygon({
     paths: coords
