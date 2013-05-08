@@ -78,7 +78,7 @@ function handleAccessToken(token) {
 // Perform a query.
 function runQuery(e) {
   var query = $("#query").prop('value');
-  var url = "https://www.googleapis.com/mapsengine/v1beta2/" + query;
+  var url = "https://www.googleapis.com/mapsengine/" + query;
 
   parameters = {
     access_token: oauth_token,
